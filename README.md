@@ -2,8 +2,8 @@
 > 드디어 얘기만 듣던 `RxSwift` 스터디를 시작합니다.
 
 ## Tools
-* RxSwift - Reactive Programming with Swift by Martin Todorov
-* Xcode 9 or Later
+* 📕 RxSwift - Reactive Programming with Swift by Martin Todorov
+* 🔨 Xcode 9 or Later
 
 ## Curriculum
 * 총 5개의 Section과 24개의 Chapter로 구성되어 있습니다.
