@@ -14,7 +14,7 @@
 * **Section I: Getting Started with RxSwift**
 > | Ch# | Chapter Subject | Practice | Note |
 > |:---:| :--- | :---: | :--- |
-> |1|Hello RxSwift!|||
+> |1|[Hello RxSwift!](https://github.com/fimuxd/RxSwift/blob/master/01_HelloRxSwift/Ch.1%20Hello%20RxSwift.md)| - | RxSwift 개요 |
 > |2|Observables|||
 > |3|Subjects|||
 > |4|Observables and Subjects in Practice|||
