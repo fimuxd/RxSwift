@@ -1,5 +1,6 @@
-# RxSwift
-> 드디어 얘기만 듣던 `RxSwift` 스터디를 시작합니다.
+# RxSwift <img src = "https://github.com/ReactiveX/RxSwift/raw/master/assets/Rx_Logo_M.png" width = 60  align = right> 
+
+>드디어 얘기만 듣던 `RxSwift` 스터디를 시작합니다.
 
 ## Tools
 * 📕 RxSwift - Reactive Programming with Swift by Martin Todorov
