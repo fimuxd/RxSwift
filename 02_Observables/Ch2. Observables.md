@@ -515,6 +515,7 @@ public func example(of description: String, action: () -> Void) {
 		* 4) `flip`의 값에 따라 다른 Observable을 리턴하도록 한다.
 	* 이 후 해당 `factory`의 구독을 4번 반복한 값을 출력해볼 수 있다. 
 		* `factory`를 구독할 때마다, 두개의 Observable이 번갈아가며 출력된다. 
+	* 두호님 Tip: factory라는 건 이 책에서 만든 개념같은 거예요. `.deferred` 라는 놈은 Observable을 리턴하는 메소드입니다. Swift 기본 문법에서 `lazy var` 같은 느낌처럼, subscribe 될 때, `.deferred`가 실행되어 리턴 값인 Observable이 나오게 됩니다.
 
 ## H. Traits 사용
 * Trait은 일반적인 Observable 보다 좁은 범위의 Observable 으로 선택적으로 사용할 수 있다. 
