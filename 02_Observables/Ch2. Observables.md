@@ -18,7 +18,7 @@ public func example(of description: String, action: () -> Void) {
 * Observable이 무엇인지, 어떻게 만드는지, 어떻게 사용하는지에 대해서 알아볼 것임
 * `observable` = `observable sequence` = `sequence`: 각각의 단어를 계속 보게 될 것인데 이는 곧 다 같은 말이다. (Everything is a sequence)
 * 중요한 것은 이 모든 것들이 **비동기적(asynchronous**)이라는 것.
-* Observable 들은 일정 기간 동안 계속해서 **이벤트**를 생성하며, 이러한 과정을 보통 **emitting(방출)**이라고 표현한다. 
+* Observable 들은 일정 기간 동안 계속해서 **이벤트**를 생성하며, 이러한 과정을 보통 **emitting**(방출)이라고 표현한다. 
 * 각각의 이벤트들은 숫자나 커스텀한 인스턴스 등과 같은 **값**을 가질 수 있으며, 또는 탭과 같은 **제스처**를 인식할 수도 있다. 
 * 이러한 개념들을 가장 잘 이해할 수 있는 방법은 marble diagrams를 이용하는 것이다. 
 	* marble diagram?: 시간의 흐름에 따라서 값을 표시하는 방식
@@ -91,7 +91,7 @@ public func example(of description: String, action: () -> Void) {
 		* ii) `one` 정수를 이용한 `just` method를 통해 `Int` 타입의 Observable sequence를 만들 것
 	* `just`는 `Observable`의 타입 메소드. 이름에서 추측할 수 있듯, 오직 하나의 요소를 포함하는 Observable sequence를 생성한다.
 		* 내가 이해한게 맞다면 상기코드의 `observable`은 `1` 을 뿜! 할 듯.
-	* Rx에는 **operator(연산자)**가 있으니 이걸 이용할 수 있을 것임
+	* Rx에는 **operator***(연산자)가 있으니 이걸 이용할 수 있을 것임
 * 상기 코드 하단에 아래 코드를 추가해봅시다.
 
 	```swift
@@ -116,7 +116,7 @@ public func example(of description: String, action: () -> Void) {
 	``` 
 	* `observable4`의 타입은 `Observable<Int>`
 	* `from` 연산자는 일반적인 array 각각 요소들을 하나씩 방출한다
-	* `from` 연산자는 ***오직*** array 만 취한다.
+	* `from` 연산자는 ***오직 array 만*** 취한다.
 	* [Marble diagram 확인](http://rxmarbles.com/#from)
 
 ## E. Observable 구독
@@ -135,10 +135,10 @@ public func example(of description: String, action: () -> Void) {
 	}
 	```
 	* RxSwift의 Observable를 구독하는 것은 상기 방식과 비슷하다. 
-		* Observable로 구독?(subscribe)할 대상을 선언한다.
+		* Observable을 구독하고 싶을 때 구독(subscribe)!을 선언한다.
 		* 따라서 `addObserver()` 대신에 `subscribe()`를 사용함.
 		* 다만 상기코드가 `.default` 싱글톤 인스턴스에서만 가능했다면, Rx의 Observable의 경우는 그렇지 않다.
-* **(중요)** Observable은 실제로 sequence 정의다. **Observable은 subscriber를 가지기 전에는 이벤트를 보내지 않는다.**
+* **(중요)** Observable은 실제로 sequence 정의일 뿐이다. **Observable은 subscriber, 즉 구독되기 전에는 아무런 이벤트도 보내지 않는다.** 그저 정의일 뿐.
 * Observable 구현은 Swift 기본 라이브러리의 반복문에서 `.next()`를 구현하는 것과 매우 유사하다.
 
 	```swift
@@ -274,7 +274,7 @@ public func example(of description: String, action: () -> Void) {
 	}
 	```
 	* 이렇게 하면 `Completed` 조차 프린트 되지 않는다.
-	* 이 코드가 제대로 작동하는지 어떻게 확인할 수 있을까? 이 부분은 **Challenges** 섹션에서 알아보도록 하자
+	* 이 코드가 제대로 작동하는지 어떻게 확인할 수 있을까? 이 부분은 [Challenges](https://github.com/fimuxd/RxSwift/blob/master/02_Observables/Ch2.%20Observables.md#1-부수작용-구현해보기-do-연산자) 섹션에서 알아보도록 하자
 
 ### 4. .range()
 
