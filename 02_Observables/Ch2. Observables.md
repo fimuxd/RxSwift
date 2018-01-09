@@ -27,16 +27,16 @@ public func example(of description: String, action: () -> Void) {
 
 ## C. Observable의 생명주기
 
-![그림](/Users/boyoungpark/Documents/GitHub/RxSwift/02_Observables/1. marble.png)
+![그림](https://github.com/fimuxd/RxSwift/blob/master/02_Observables/1.%20marble.png?raw=true)
 
 * 상단의 Marble diagram을 보면 세 개의 구성요소를 확인 할 수 있다. 
 * Observable은 앞서 설명했던 `next` 이벤트를 통해 각각의 요소들을 방출하는 것.
 
-![그림](/Users/boyoungpark/Documents/GitHub/RxSwift/02_Observables/2. lifecycle1.png)
+![그림](https://github.com/fimuxd/RxSwift/blob/master/02_Observables/2.%20lifecycle1.png?raw=true)
 
 * 이 Observable은 세 개의 tap 이벤트를 방출한 뒤 완전종료됨. 이 것을 앞서 말한 대로 `completed` 이벤트라고 한다.
 
-![그림](/Users/boyoungpark/Documents/GitHub/RxSwift/02_Observables/3. lifecycle2.png)
+![그림](https://github.com/fimuxd/RxSwift/blob/master/02_Observables/3.%20lifecycle2.png?raw=true)
 
 * 이 marble diagram에서는 상단의 예시들과 다르게 에러가 발생한 것.
 * Observable이 완전종료되었다는 면에선 다를게 없지만, `error` 이벤트를 통해 종료된 것
