@@ -24,10 +24,10 @@
 	        })
 	        
 	    // 4
-	    subject.on(.next("1"))			//Print: 1
+	    subject.on(.next("1"))		//Print: 1
 	    
 	    // 5
-	    subject.onNext("2")				//Print: 2
+	    subject.onNext("2")		//Print: 2
 	}
 	```
 	
@@ -59,7 +59,7 @@
 * PublishSubject는 구독된 순간 새로운 이벤트 수신을 알리고 싶을 때 용이하다.
 * 이런 활동은 구독을 멈추거나, `.completed`, `.error` 이벤트를 통해 Subject가 완전 종료될 때까지 지속된다.
 
-	<img src = "/Users/boyoungpark/Documents/GitHub/RxSwift/03_Subjects/1. publishsubject.png" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/1.%20publishsubject.png?raw=true" height = 200>
 
 	* 상기 그림의 첫 번째 줄은 subject를 배포한 것이다. 두 번째 줄과 세 번째 줄이 subscriber 들이다.
 	* 아래로 향하는 화살표들은 이벤트의 방출, 위로 향하는 화살표들은 구독을 선언하는 것을 의미한다.
@@ -136,7 +136,7 @@
 
 * `BehaviorSubject`는 마지막 `.next` 이벤트를 새로운 구독자에게 반복한다는 점만 빼면 `PublishSubject`와 유사하다.
 
-	<img src = "/Users/boyoungpark/Documents/GitHub/RxSwift/03_Subjects/2. behaviorsubject.png" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/2.%20behaviorsubject.png?raw=true" height = 200>
 
 	* 위 그림에서 첫 번째 줄이 subject 이며, 두 번째와 세 번째 줄이 각각의 subscriber 들이다. 
 	* 첫 번째 이벤트가 발생한 후 첫 번째 구독자가 구독을 시작했지만 `PublishSubject`와는 다르게 직전의 값`1`을 받는다.
@@ -210,7 +210,7 @@
 
 * `ReplaySubject`는 생성시 선택한 특정 크기까지, 방출하는 최신 요소를 일시적으로 캐시하거나 버퍼한다. 그런 다음에 해당 버퍼를 새 구독자에게 방출한다.
 
-	<img src = "/Users/boyoungpark/Documents/GitHub/RxSwift/03_Subjects/3. replaysubject.png" height = 200> 
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/3.%20replaysubject.png?raw=true" height = 200> 
 	
 	* 상단의 그림에서 첫 번째 줄이 subject, 아래에 있는 애들이 구독자들이다. 여기서 subject의 버퍼 사이즈는 2다. 첫 번째 구독자(두번째줄)는 subject와 함께 구독하므로 subject의 값들을 그대로 갖는다. 두번째 구독자(세번째줄)은 subject가 두개의 이벤트를 받은 후 구독하였지만 버퍼사이즈`2`만큼의 값을 역시 받을 수 있다.
 * **(주의)** `ReplaySubject`를 사용할 때 유념해야할 것이 있다. 바로 이러한 버퍼들은 메모리가 가지고 있다는 것이다. 
@@ -411,13 +411,13 @@ dealtHand
 * 대부분의 앱들은 유저 세션을 추적하고 있다. variable은 이러한 용도에 적합하다.
 * 로그인 또는 로그아웃 같은 유저 세션이 변화할 때마다 반응하도록 구독할 수도 있지만, 그저 일회성으로 현상태만 점검하고 싶을 수 있다. 
 
-#### Create userSession Variable of type UserSession with initial value of .loggedOut
+#### // Create userSession Variable of type UserSession with initial value of .loggedOut
 
 ```swift
 let userSession = Variable(UserSession.loggedOut)
 ```
 
-#### Subscribe to receive next events from userSession
+#### // Subscribe to receive next events from userSession
 
 ```swift
 userSession.asObservable()
@@ -427,13 +427,13 @@ userSession.asObservable()
         .disposed(by: disposeBag)
 ```
 
-#### Update userSession
+#### // Update userSession
 
 ```swift
 userSession.value = UserSession.loggedIn
 ```
 
-#### Update userSession
+#### // Update userSession
 
 ```swift
     func logOut() {
