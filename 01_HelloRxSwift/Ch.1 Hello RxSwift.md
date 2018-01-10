@@ -258,3 +258,6 @@ end
 ```
 github "ReactiveX/RxSwift" ~> 4.0
 ```
+
+***
+##### Artwork/images/designs: from RxSwift: Reactive Programming in Swift book, available at http://www.raywenderlich.com
