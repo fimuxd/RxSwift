@@ -13,12 +13,12 @@
 * 개인적인 스터디 + 추후 틈틈히 챙겨볼 handbook 목적입니다.
 
 * **Section I: Getting Started with RxSwift**
-> | Ch# | Chapter Subject | Practice | Note |
-> |:---:| :--- | :---: | :--- |
-> |1|[Hello RxSwift!](https://github.com/fimuxd/RxSwift/blob/master/01_HelloRxSwift/Ch.1%20Hello%20RxSwift.md)| - | RxSwift 개요 |
-> |2|[Observables](https://github.com/fimuxd/RxSwift/blob/master/02_Observables/Ch2.%20Observables.md)| - | 관찰가능한 아이 :) |
-> |3|Subjects|||
-> |4|Observables and Subjects in Practice|||
+> | Ch# | Chapter Subject | Note |
+> |:---:| :--- | :--- |
+> |1|[Hello RxSwift!](https://github.com/fimuxd/RxSwift/blob/master/01_HelloRxSwift/Ch.1%20Hello%20RxSwift.md) | RxSwift 개요 |
+> |2|[Observables](https://github.com/fimuxd/RxSwift/blob/master/02_Observables/Ch2.%20Observables.md) | 관찰가능한. RxSwift의 심장 |
+> |3|[Subjects](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md) | *Observable* 이자 *Observer* 인 녀석 |
+> |4|Observables and Subjects in Practice||
 
 * **Section II: Operators and Best Practices**
 > | Ch# | Chapter Subject | Practice | Note |
