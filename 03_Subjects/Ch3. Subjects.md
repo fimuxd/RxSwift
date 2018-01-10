@@ -48,10 +48,10 @@
 * Subject = Observable + Observer (와 같이 행동한다)
 * Subject는 `.next` 이벤트를 받고, 이런 이벤트를 수신할 때마다 subscriber에 방출한다.
 * RxSwift에는 4 가지 타입의 subject가 있다.
-	* `PublishSubject`: 빈 상태로 시작하여 새로운 값만을 subscriber에 방출한다.
-	* `BehaviorSubject`: 하나의 초기값을 가진 상태로 시작하여, 새로운 subscriber에게 초기값 또는 최신값을 방출한다.
-	* `ReplaySubject`: 버퍼를 두고 초기화하며, 버퍼 사이즈 만큼의 값들을 유지하면서 새로운 subscriber에게 방출한다.
-	* `Variable`: `BehaviorSubject`를 래핑하고, 현재의 값을 상태로 보존한다. 가장 최신/초기 값만을 새로운 subscriber에게 방출한다. 
+	* [PublishSubject](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md#c-publishsubjects로-작업하기): 빈 상태로 시작하여 새로운 값만을 subscriber에 방출한다.
+	* [BehaviorSubject](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md#d-behaviorsubjects로-작업하기): 하나의 초기값을 가진 상태로 시작하여, 새로운 subscriber에게 초기값 또는 최신값을 방출한다.
+	* [ReplaySubject](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md#e-replaysubjects로-작업하기): 버퍼를 두고 초기화하며, 버퍼 사이즈 만큼의 값들을 유지하면서 새로운 subscriber에게 방출한다.
+	* [Variable](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md#f-variables로-작업하기): `BehaviorSubject`를 래핑하고, 현재의 값을 상태로 보존한다. 가장 최신/초기 값만을 새로운 subscriber에게 방출한다. 
 
 ## C. PublishSubjects로 작업하기
 ### 1. 개념
@@ -369,7 +369,7 @@
 * variable은 유동적이다.
 * observable처럼 구독할 수 있고, subject처럼 새로운 `.next`이벤트를 받을 때 마다 반응하도록 구독할 수 있다. 
 * 업데이트 구독없이 그냥 현재값을 확인하고 싶을 때 일회성으로 적용뙬 수 있다.
-* 두 번째 challenge를 통해 확인해보자.
+* [두 번째 challenge](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md#2-variable을-이용하여-유저-세션-상태를-관찰하고-체크하기)를 통해 확인해보자.
 
 
 ## G. Challenges
