@@ -27,7 +27,7 @@ public func example(of description: String, action: () -> Void) {
 
 ## C. Observable의 생명주기
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/02_Observables/1.%20marble.png?raw=true" height = 50 align = center>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/02_Observables/1.%20marble.png?raw=true" height = 50>
 
 * 상단의 Marble diagram을 보면 세 개의 구성요소를 확인 할 수 있다. 
 * Observable은 앞서 설명했던 `next` 이벤트를 통해 각각의 요소들을 방출하는 것.
