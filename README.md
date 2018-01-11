@@ -2,8 +2,14 @@
 
 >드디어 얘기만 듣던 `RxSwift` 스터디를 시작합니다.
 
+## Contents
+* [Tools](https://github.com/fimuxd/RxSwift#tools)
+* [Curriculum](https://github.com/fimuxd/RxSwift#curriculum)
+* [Contributors](https://github.com/fimuxd/RxSwift#Contributors)
+* [ContactMe](https://github.com/fimuxd/RxSwift#ContactMe)
+
 ## Tools
-* 📕 RxSwift - Reactive Programming with Swift by Martin Todorov
+* 📕 RxSwift - Reactive Programming with Swift by Martin Todorov ([구매하기]())
 * 🔨 Xcode 9 or Later
 
 ## Curriculum
@@ -19,7 +25,7 @@
 	> |1|[Hello RxSwift!](https://github.com/fimuxd/RxSwift/blob/master/01_HelloRxSwift/Ch.1%20Hello%20RxSwift.md) | - | RxSwift 개요 |
 	> |2|[Observables](https://github.com/fimuxd/RxSwift/blob/master/02_Observables/Ch2.%20Observables.md) | - | 관찰가능한. RxSwift의 심장 |
 	> |3|[Subjects](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md) | [Relays & Variables](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Homework.md) | *Observable* 이자 *Observer* 인 녀석 |
-	> |4|Observables and Subjects in Practice|||
+	> |4|[Observables and Subjects in Practice](https://github.com/fimuxd/RxSwift/blob/master/04_ObservablesAndSubjectsInPractice/Ch4.ObservablesAndSubjectsInPractice.md)|| 실전 연습 |
 
 * **Section II: Operators and Best Practices**
 	> | Ch# | Chapter Subject | Practice | Note |
@@ -61,3 +67,16 @@
 	> |23|MVVM with RxSwift|||
 	> |24|Building a Complete RxSwfit App|||
 
+## Contributors
+
+> Rx 무식자인 저의 눈높이에 맞춰 가르쳐주시는 멘토분들입니다. 고맙습니다. 
+
+* [studiogaram](https://github.com/studiogaram)
+* [dooho1016](https://github.com/dooho1016)
+
+## ContactMe
+* 📱 +82 10.3316.1609
+* 📧 iosdeveloperkr@gmail.com
+
+***
+***Life is a game. Play it :)***
