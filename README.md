@@ -30,7 +30,7 @@
 * **Section II: Operators and Best Practices**
 	> | Ch# | Chapter Subject | Practice | Note |
 	> |:---:| :--- | :---: | :--- |
-	> |5|Filtering Operators|||
+	> |5|[Filtering Operators](https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/Ch5.%20FilteringOperators.md)||필터링 연산자|
 	> |6|Filtering Operators in Practice|||
 	> |7|Transforming Operators|||
 	> |8|Transforming Operators in Practice|||
