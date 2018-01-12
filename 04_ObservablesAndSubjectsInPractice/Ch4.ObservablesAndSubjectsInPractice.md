@@ -313,6 +313,75 @@
 
 ### Challenge 1: Single 이용해보기
 
+* 카메라롤에 사진을 저장하는 용도로 `.asSingle()`을 사용하는 것을 인지하지 못했을 것이다.
+* observable sequence는 이미 최대 하나의 요소만을 방출한다.
+* **PhotoWriter.swift**의 `save(_)`의 리턴타입을 Single<String>으로 바꾼다. 그리고 `Observable.create`를 `Single.create`로 바꾼다.
+* 여기서 하나 신경써야할 것이 있다. `Single.create`은 observer가 아닌 클로저를 파라미터로 받는다는 것이다.
+	*  `Observable.create`는 observer를 파라미터로 받는다. 따라서 여러개의 값을 방출하고 이벤트를 종료할 수 있다. 
+	*  `Single.create`는 `.success(T)` 또는 `.error(E)` 값을 출력할 수 있는 클로저를 파라미터로 받는다.
+	*  따라서 이 문제에서는 `single(.success(id))` 와 같은 방식으로 호출할 수 있다.
 
+> A.
+> 
+```swift
+static func save(_ image: UIImage) -> Single<String> {  //1. 리턴 타입을 Single<String>로 바꿈
+        return Single.create(subscribe: { observer in       //2. Single.create로 바꿈
+            var savedAssetId: String?
+            PHPhotoLibrary.shared().performChanges({
+                let request = PHAssetChangeRequest.creationRequestForAsset(from: image)
+                savedAssetId = request.placeholderForCreatedAsset?.localIdentifier
+            }, completionHandler: { success, error in
+                DispatchQueue.main.async {
+                    if success, let id = savedAssetId {
+                        observer(.success(id))              //3. Single이 뱉을 수 있는 .success()로 값을 방출
+                    } else {
+                        observer(.error(error ?? Errors.couldNotSavePhoto))
+                    }
+                }
+            })
+            return Disposables.create()
+        })
+    }
+```
 
-### Challenge 2: Add custom observable to present alerts
+### Challenge 2: 현재 alert에 커스텀한 observable 추가하기
+
+* **MainViewController.swift** 에서 `showMessage(_:description:)` 메소드를 확인해보자.
+* 이 메소드는 유저가 alert 화면을 끄기 위해 **Close** 버튼을 누르면 실행될 것이다. 이미 앞선 예제를 통해 `PHPhotoLibrary.performChanges(_)`를 구현했던 것과 비슷해보인다.
+* 다음과 같이 진행해보자.
+	* `UIViewController`에 extension을 추가하여 화면에 제목과 메시지를 포함한 alert을 띄우고 Completable을 리턴하는 메소드를 작성해보자.
+	* 구독이 종료되었을 때 alert도 종료시켜야 한다
+* 마지막에는 새로운 completable을 이용하여 `showMessage(_:description:)` 내에서 alert을 띄울 수 있도록 한다.
+
+> A.
+>
+> 1. 다음과 같이 UIViewController extension을 작성하여 메소드 작성
+> 
+> ```swift
+> import UIKit
+> import RxSwift
+> 
+> extension UIViewController {
+>     func alert(title: String, text: String?) -> Completable {
+>         return Completable.create(subscribe: { [weak self] completable in
+>             let alertVC = UIAlertController(title: title, message: text, preferredStyle: .alert)
+>             let closeAction = UIAlertAction(title: "Close", style: .default, handler: { _ in
+>                 completable(.completed)
+>             })
+>             alertVC.addAction(closeAction)
+>             self?.present(alertVC, animated: true, completion: nil)
+>             return Disposables.create {
+>                 self?.dismiss(animated: true, completion: nil)
+>             }
+>         })
+>     }
+> }
+> ```
+> 
+> 2. MainViewController.swift의 showMessage(_:description:)에 구현할 것
+> 
+> ```swift
+>         alert(title: title, text: description)
+>             .subscribe()
+>             .disposed(by: bag)
+> ```
