@@ -323,26 +323,26 @@
 
 > A.
 > 
-```swift
-static func save(_ image: UIImage) -> Single<String> {  //1. 리턴 타입을 Single<String>로 바꿈
-        return Single.create(subscribe: { observer in       //2. Single.create로 바꿈
-            var savedAssetId: String?
-            PHPhotoLibrary.shared().performChanges({
-                let request = PHAssetChangeRequest.creationRequestForAsset(from: image)
-                savedAssetId = request.placeholderForCreatedAsset?.localIdentifier
-            }, completionHandler: { success, error in
-                DispatchQueue.main.async {
-                    if success, let id = savedAssetId {
-                        observer(.success(id))              //3. Single이 뱉을 수 있는 .success()로 값을 방출
-                    } else {
-                        observer(.error(error ?? Errors.couldNotSavePhoto))
-                    }
-                }
-            })
-            return Disposables.create()
-        })
-    }
-```
+> ```swift
+> static func save(_ image: UIImage) -> Single<String> {  //1. 리턴 타입을 Single<String>로 바꿈
+>         return Single.create(subscribe: { observer in       //2. Single.create로 바꿈
+>             var savedAssetId: String?
+>             PHPhotoLibrary.shared().performChanges({
+>                 let request = PHAssetChangeRequest.creationRequestForAsset(from: image)
+>                 savedAssetId = request.placeholderForCreatedAsset?.localIdentifier
+>             }, completionHandler: { success, error in
+>                 DispatchQueue.main.async {
+>                     if success, let id = savedAssetId {
+>                         observer(.success(id))              //3. Single이 뱉을 수 있는 .success()로 값을 방출
+>                     } else {
+>                         observer(.error(error ?? Errors.couldNotSavePhoto))
+>                     }
+>                 }
+>             })
+>             return Disposables.create()
+>         })
+>     }
+> ```
 
 ### Challenge 2: 현재 alert에 커스텀한 observable 추가하기
 
