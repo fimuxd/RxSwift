@@ -32,7 +32,7 @@
 	> |:---:| :--- | :---: | :--- |
 	> |5|[Filtering Operators](https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/Ch5.%20FilteringOperators.md)||필터링 연산자|
 	> |6|Filtering Operators in Practice|||
-	> |7|Transforming Operators|||
+	> |7|[Transforming Operators](https://github.com/fimuxd/RxSwift/blob/master/07_Transforming%20Operators/CH7_TransformingOperators.md)||변환 연산자|
 	> |8|Transforming Operators in Practice|||
 	> |9|Combining Operators|||
 	> |10|Combining Operators in Practice|||
