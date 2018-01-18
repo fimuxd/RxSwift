@@ -34,9 +34,9 @@
 	> |6|Filtering Operators in Practice|||
 	> |7|[Transforming Operators](https://github.com/fimuxd/RxSwift/blob/master/07_Transforming%20Operators/CH7_TransformingOperators.md)||변환 연산자|
 	> |8|Transforming Operators in Practice|||
-	> |9|Combining Operators|||
+	> |9|[Combining Operators](https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/Ch9.CombiningOperators.md)||결합 연산자|
 	> |10|Combining Operators in Practice|||
-	> |11|Time Based Operators|||
+	> |11|[Time Based Operators](https://github.com/fimuxd/RxSwift/blob/master/11_Time%20Based%20Operators/Time%20Based%20Operators.md)||시간 기반 연산자|
 
 * **Section III: iOS Apps with RxCocoa**
 	> | Ch# | Chapter Subject | Practice | Note |
