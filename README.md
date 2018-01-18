@@ -9,7 +9,7 @@
 * [ContactMe](https://github.com/fimuxd/RxSwift#ContactMe)
 
 ## Tools
-* 📕 RxSwift - Reactive Programming with Swift by Martin Todorov ([구매하기]())
+* 📕 RxSwift - Reactive Programming with Swift by Martin Todorov ([구매하기](https://store.raywenderlich.com/products/rxswift?_ga=2.88706715.1421367013.1516248812-515082446.1516248812))
 * 🔨 Xcode 9 or Later
 
 ## Curriculum
@@ -41,7 +41,7 @@
 * **Section III: iOS Apps with RxCocoa**
 	> | Ch# | Chapter Subject | Practice | Note |
 	> |:---:| :--- | :---: | :--- |
-	> |12|Beginning RxCocoa|||
+	> |12|[Beginning RxCocoa](https://github.com/fimuxd/RxSwift/blob/master/12.%20Beginning%20RxCocoa/Ch12.%20Beginning%20RxCocoa.md)||초급 RxCocoa|
 	> |13|Intermediate RxCocoa|||
 
 * **Section IV: Intermediaate RxSwift/RxCocoa**
