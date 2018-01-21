@@ -42,7 +42,7 @@
 	> | Ch# | Chapter Subject | Practice | Note |
 	> |:---:| :--- | :---: | :--- |
 	> |12|[Beginning RxCocoa](https://github.com/fimuxd/RxSwift/blob/master/12.%20Beginning%20RxCocoa/Ch12.%20Beginning%20RxCocoa.md)||초급 RxCocoa|
-	> |13|Intermediate RxCocoa|||
+	> |13|[Intermediate RxCocoa](https://github.com/fimuxd/RxSwift/blob/master/13.%20Intermediate%20RxCocoa/Ch13.Intermediate%20RxCocoa.md)||고급 RxCocoa|
 
 * **Section IV: Intermediaate RxSwift/RxCocoa**
 	> | Ch# | Chapter Subject | Practice | Note |
