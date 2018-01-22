@@ -83,6 +83,7 @@
 * 에러는 observable 체인을 통과하는 과정에서 발생한다. 따라서 observable chain의 시작부분에서 에러가 발생했을 때 별도의 관리를 하지 않은 경우 그대로 구독으로 전달되게 된다. 무슨 뜻이냐고? observable이 에러를 냈을 때, 에러 구독이 확인되고 이로 인해 모든 구독이 dispose 된다는 뜻이다. 따라서 observable이 에러를 냈을 때, observable은 반드시 완전종료되고 에러 다음의 이벤트는 모두 무시된다. 이것이 observable의 규칙이다.
 
 	<img src = "https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/4.errorout.png?raw=true" height = 200>
+	
 	* 네트워크가 에러를 만들어내고 observable sequence도 에러를 냈다.
 	* 구독은 추후 업데이트를 방지하기 위해 UI 업데이트를 중단한다. 
 * 이를 실제 앱에 적용시켜보자. `textSearch` observable 내의 `catchErrorJustReturn(ApiController.Weather.empty)`를 삭제하고 앱을 실행해보면 API는 404 에러를 낼 것이다. 여기서 404 에러의 의미는 사용자가 찾고자 하는 도시명을 API내에서 찾을 수 없다는 의미다. 아마 다음과 같은 문구를 콘솔에서 발견할 것이다.
