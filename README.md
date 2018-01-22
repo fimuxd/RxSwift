@@ -47,7 +47,7 @@
 * **Section IV: Intermediaate RxSwift/RxCocoa**
 	> | Ch# | Chapter Subject | Practice | Note |
 	> |:---:| :--- | :---: | :--- |
-	> |14|Error Handling in Practice|||
+	> |14|[Error Handling in Practice](https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/Ch.14%20Error%20Handling%20in%20Practice.md)||**에러처리**<p>catch<p>retry|
 	> |15|Intro To Schedulers|||
 	> |16|Testing with RxTest|||
 	> |17|Creating Custom Reactive Extensions|||
