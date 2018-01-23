@@ -20,11 +20,11 @@
 * RxSwift에서의 에러관리는 프레임워크 중 하나이며, 따라서 다음과 같이 두가지 방법으로 해결이 가능하다.
 	* **Catch**: *기본값defaultValue*으로 error 복구하기
 
-		<img src = "https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/1.catch.png?raw=true" height = 50 >
+		<img src = "https://github.com/fimuxd/RxSwift/blob/master/14_Error%20Handling%20in%20Practice/1.catch.png?raw=true" height = 50 >
 
 	* **Retry**: 제한적 또는 무제한으로 *재시도Retry* 하기
 
-		<img src = "https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/2.retry.png?raw=true" height = 110>
+		<img src = "https://github.com/fimuxd/RxSwift/blob/master/14_Error%20Handling%20in%20Practice/2.retry.png?raw=true" height = 110>
 
 * 이 장의 예제에는 실제 에러관리가 하나도 구현되어있지 않다. 모든 에러는 `dummy` 버전 데이터를 리턴하는 `catchErrorJustReturn` Single로 잡힌다. 이는 아주 유용해보이지만, RxSwift에는 더 나은 방법들이 있다. 
 	
@@ -66,7 +66,7 @@
 	* 이 연산자는 클로저를 매개변수로 받아서 완전히 다른 형태의 observable로 반환한다.
 	* 이 옵션을 어디서 사용해야할지 감이 잡히지 않는다면, observable 에러가 발생하면 이전에 캐싱된 값을 반환하는 전략을 생각해보자. 다음과 같은 과정을 거치게 된다.
 
-		<img src = "https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/3.catchError.png?raw=true" height = 100>
+		<img src = "https://github.com/fimuxd/RxSwift/blob/master/14_Error%20Handling%20in%20Practice/3.catchError.png?raw=true" height = 100>
 
 	* 여기서 `catchError`는 이전에 에러가 발생하지 않았던 값을 반환한다. 
 * 두번째 연산자는 다음과 같다.
@@ -82,7 +82,7 @@
 
 * 에러는 observable 체인을 통과하는 과정에서 발생한다. 따라서 observable chain의 시작부분에서 에러가 발생했을 때 별도의 관리를 하지 않은 경우 그대로 구독으로 전달되게 된다. 무슨 뜻이냐고? observable이 에러를 냈을 때, 에러 구독이 확인되고 이로 인해 모든 구독이 dispose 된다는 뜻이다. 따라서 observable이 에러를 냈을 때, observable은 반드시 완전종료되고 에러 다음의 이벤트는 모두 무시된다. 이것이 observable의 규칙이다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/4.errorout.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/14_Error%20Handling%20in%20Practice/4.errorout.png?raw=true" height = 200>
 	
 	* 네트워크가 에러를 만들어내고 observable sequence도 에러를 냈다.
 	* 구독은 추후 업데이트를 방지하기 위해 UI 업데이트를 중단한다. 
@@ -99,7 +99,7 @@
 * 작업이 끝나면 빈 형식의 `Weather`를 반환하여 앱의 에러가 복구되도록하여 앱이 중단되지 않도록 한다.
 * 이러한 방식의 에러관리는 다음과 같은 workflow로 표현할 수 있다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/5.workflow.png?raw=true" height = 200 >
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/14_Error%20Handling%20in%20Practice/5.workflow.png?raw=true" height = 200 >
 
 * 이 방식도 훌륭하다. 하지만 만약 가능할 경우 앱이 데이터를 캐시해서 반환할 수 있다면 더 좋을 것이다.
 * **ViewController.swift**를 열고 다음과 같이 간단한 dictionary 프로퍼티를 추가하자.
@@ -143,7 +143,7 @@
 * `retry` 연산자가 observable 에러에서 사용될 때, observable은 스스로를 계속 반복한다. 즉, `retry`는 observable 내의 *전체* 작업을 반복한다는 것을 의미한다.
 * 이는 에러 발생시 사용자가 직접 (부적절한 타이밍에) 재시도 함으로써 사용자 인터페이스가 변경되는 부작용을 막기 위해 권장되는 방법이다. 
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/6.retryError.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/14_Error%20Handling%20in%20Practice/6.retryError.png?raw=true" height = 200>
 
 ### 1. Retry
 
@@ -254,7 +254,7 @@
 
 * 이 동작과정은 다음과 같다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/7.retry.png?raw=true" height = 300>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/14_Error%20Handling%20in%20Practice/7.retry.png?raw=true" height = 300>
 
 	* trigger는 원래의 에러 observable을 고려하여 아주 복잡한 back-off 전략을 쓸 수 있다. 몇 줄의 RxSwift 코드 만으로도 복잡한 오류 처리 전략을 작성할 수 있도록 한다. 
 
@@ -392,12 +392,12 @@
 * 책의 첫부분에서 `Event` enum에 대해서 배웠다. ([다시보기](https://github.com/fimuxd/RxSwift/blob/master/01_HelloRxSwift/Ch.1%20Hello%20RxSwift.md#1-observables)) `Event`는 RxSwift의 아주 기본적인 요소이자 중요한 요소라고 할 수 있지만, 이들을 직접 사용하는 경우는 드물다. 
 	* `materialize` 연산자는 어떤 sequence든 `Event<T>` eunm sequence로 변환한다.
 
-		<img src = "https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/8.materialize.png?raw=true" height = 200>
+		<img src = "https://github.com/fimuxd/RxSwift/blob/master/14_Error%20Handling%20in%20Practice/8.materialize.png?raw=true" height = 200>
 	
 		* 이 연산자를 이용하면 적절한 연산자와 여러가지 handler로 조작되는 암시적인 sequence들을 명시적으로 변환할 수 있다. 따라서 `onNext`, `onError`, `onCompleted`는 각각의 함수로써 조작될 수 있다.
 	* notification sequence를 뒤집고 싶으면 `demeterialize`를 사용할 수 있다.
 
-		<img src = "https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/9.demeterialize.png?raw=true" height = 200>
+		<img src = "https://github.com/fimuxd/RxSwift/blob/master/14_Error%20Handling%20in%20Practice/9.demeterialize.png?raw=true" height = 200>
 			
 		* 이 연산자는 notification sequence를 일반 `Observable`로 변환한다. 
 * 이 두가지 연산자를 병합해서 커스텀한 이벤트 기록기를 만들 수 있다. 
@@ -412,4 +412,4 @@
 	
 * **참고**: `materialize`와 `dematerialize`는 보통 함께 쓰인다. 이 둘을 함께 쓰면 원본 observable을 완전히 분해할 수 있다. 다만, 특정 상황을 처리할 수 있는 다른 옵션이 없을 때만 신중하게 사용해야 한다. 	 
 ## I. Challenges
-### 연결 재개를 위해 retryWhen 사용하기
+### 연결 재개를 위해 retryWhen 사용하기14_
