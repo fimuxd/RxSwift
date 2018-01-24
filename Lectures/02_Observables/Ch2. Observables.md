@@ -671,3 +671,6 @@ example(of: "never") {
 2018-01-09 18:00:24.754: never 확인 -> isDisposed
 */
 ```
+
+***
+##### Artwork/images/designs: from RxSwift: Reactive Programming in Swift book, available at http://www.raywenderlich.com

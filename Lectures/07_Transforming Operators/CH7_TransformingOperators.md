@@ -465,3 +465,6 @@
 > 
 >     input.value = "9"	// 총 10개의 숫자가 이미 입력되었으므로 무시됨
 > ```
+
+***
+##### Artwork/images/designs: from RxSwift: Reactive Programming in Swift book, available at http://www.raywenderlich.com

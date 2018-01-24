@@ -412,4 +412,7 @@
 	
 * **참고**: `materialize`와 `dematerialize`는 보통 함께 쓰인다. 이 둘을 함께 쓰면 원본 observable을 완전히 분해할 수 있다. 다만, 특정 상황을 처리할 수 있는 다른 옵션이 없을 때만 신중하게 사용해야 한다. 	 
 ## I. Challenges
-### 연결 재개를 위해 retryWhen 사용하기14_
+### 연결 재개를 위해 retryWhen 사용하기
+
+***
+##### Artwork/images/designs: from RxSwift: Reactive Programming in Swift book, available at http://www.raywenderlich.com

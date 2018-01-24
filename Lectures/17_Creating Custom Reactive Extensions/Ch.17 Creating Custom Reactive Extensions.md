@@ -227,3 +227,6 @@ extension Reactive where Base: URILSession {
 
 ## G. Challenges
 ### processing feedback 추가하기
+
+***
+##### Artwork/images/designs: from RxSwift: Reactive Programming in Swift book, available at http://www.raywenderlich.com

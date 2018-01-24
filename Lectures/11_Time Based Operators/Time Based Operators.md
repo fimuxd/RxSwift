@@ -441,3 +441,6 @@
 	* 위키를 확인하세요.
 	* `.map`, `.flatten`, `.flatMap`을 최소조건으로 해서 적용 가능한 모든 Generic들
 	* 예) array, optional 등
+
+***
+##### Artwork/images/designs: from RxSwift: Reactive Programming in Swift book, available at http://www.raywenderlich.com

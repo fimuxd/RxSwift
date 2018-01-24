@@ -590,3 +590,6 @@
 >         })
 > }
 > ```
+
+***
+##### Artwork/images/designs: from RxSwift: Reactive Programming in Swift book, available at http://www.raywenderlich.com
