@@ -38,7 +38,7 @@ extension Reactive where Base: URILSession {
 * 이러한 wrapper들은 각 타입의 데이터가 도착할 때까지 대기하게 된다. 만약 저 4가지 데이터 타입이 아닌 다른 형태의 데이터를 받으면 앱은 crashing 없이 에러를 내보낼 것이다.
 * 제대로된 타입의 데이터를 받았다면, 이 wrapper는 `HTTPURLResponse`와 결과 `Data`를 반환한다. 이 예제에서의 목표는 다음과 같은 3개의 연산자를 이용해 `Observable<Data>`를 만들어내는 것이다. 
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/17_Creating%20Custom%20Reactive%20Extensions/1.createObservable.png?raw=true" height = 80>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/17_Creating%20Custom%20Reactive%20Extensions/1.createObservable.png?raw=true" height = 80>
 
 * 주 response 함수의 골격을 작성해보자. 이렇게 하면 어떤 놈이 반환되어야 하는지 알 수 있다. 앞서 만들어 놓은 extension 안에 이 함수를 추가해보자.
 
@@ -128,13 +128,13 @@ extension Reactive where Base: URILSession {
 	
 	* 이와 같이 extension을 모듈화하면, 더 나은 합성이 가능하다. 예를들어 마지막 observable은 다음과 같은 과정으로 보여질 수 있다.
 
-		<img src = "https://github.com/fimuxd/RxSwift/blob/master/17_Creating%20Custom%20Reactive%20Extensions/2.flow.png?raw=true" height = 80>
+		<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/17_Creating%20Custom%20Reactive%20Extensions/2.flow.png?raw=true" height = 80>
 
 * `map`과 같은 몇몇 RxSwift의 연산자들은 process overhead를 피하기 위해 알아서 적절히 조합되어 `map`의 다중 체인이 단일 호출로 최적화된다. 
 	
 ### 3. 커스텀 연산자 만들기
 
-* RxCocoa에 대한 챕터에서 캐시 데이터에 대한 함수를 만들었었다. GIF의 사이즈를 고려할 때 이는 좋은 접근법이 될 수 있다. 좋은 앱이라면 가능한 최대로 로딩시간을 줄이는 것이 좋다. ([캐시 데이터 함수 다시보기](https://github.com/fimuxd/RxSwift/blob/master/14.%20Error%20Handling%20in%20Practice/Ch.14%20Error%20Handling%20in%20Practice.md#d-에러-잡아내기))
+* RxCocoa에 대한 챕터에서 캐시 데이터에 대한 함수를 만들었었다. GIF의 사이즈를 고려할 때 이는 좋은 접근법이 될 수 있다. 좋은 앱이라면 가능한 최대로 로딩시간을 줄이는 것이 좋다. ([캐시 데이터 함수 다시보기](https://github.com/fimuxd/RxSwift/blob/master/Lectures/14.%20Error%20Handling%20in%20Practice/Ch.14%20Error%20Handling%20in%20Practice.md#d-에러-잡아내기))
 * `(HTTPURLResponse, Data)` 타입의 observable에서만 유효한 캐시 데이터를 위해 특별한 연산자를 만들어보자. 
 * 목표는 가능한한 많이 캐시하는 것이므로 `(HTTPURLResponse, Data)` 타입의 observabled에 대해서만 이 연산자를 생성하고, 응답 객체를 사용하여 요청할 절대 URL을 dictionary의 키로 사용하는 것이 합리적이다. 
 * 캐싱 전략은 단순한 `Dictionary`가 형태가 될것이다. 나중에 이 기본 동작을 확장하여 캐시를 유지하고 앱을 다시 열 때 리로드할 수 있다. 이 앱에서는 현재 범위로 충분히 커버 가능하다.
@@ -176,7 +176,7 @@ extension Reactive where Base: URILSession {
 	
 * 이제 확실한 한가지 타입에 대한 Observable로 확장하는 아주 기본적인 캐시 시스템을 완성했다. 다른 형식의 데이터를 캐시하기 위해 이 방법을 재사용할 수 있다.
 
-<img src= "https://github.com/fimuxd/RxSwift/blob/master/17_Creating%20Custom%20Reactive%20Extensions/3.cache.png?raw=true" height = 150>
+<img src= "https://github.com/fimuxd/RxSwift/blob/master/Lectures/17_Creating%20Custom%20Reactive%20Extensions/3.cache.png?raw=true" height = 150>
 
 ## C. 커스텀 wrapper 사용하기
 

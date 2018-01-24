@@ -48,10 +48,10 @@
 * Subject = Observable + Observer (와 같이 행동한다)
 * Subject는 `.next` 이벤트를 받고, 이런 이벤트를 수신할 때마다 subscriber에 방출한다.
 * RxSwift에는 4 가지 타입의 subject가 있다.
-	* [PublishSubject](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md#c-publishsubjects로-작업하기): 빈 상태로 시작하여 새로운 값만을 subscriber에 방출한다.
-	* [BehaviorSubject](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md#d-behaviorsubjects로-작업하기): 하나의 초기값을 가진 상태로 시작하여, 새로운 subscriber에게 초기값 또는 최신값을 방출한다.
-	* [ReplaySubject](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md#e-replaysubjects로-작업하기): 버퍼를 두고 초기화하며, 버퍼 사이즈 만큼의 값들을 유지하면서 새로운 subscriber에게 방출한다.
-	* [Variable](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md#f-variables로-작업하기): `BehaviorSubject`를 래핑하고, 현재의 값을 상태로 보존한다. 가장 최신/초기 값만을 새로운 subscriber에게 방출한다. 
+	* [PublishSubject](https://github.com/fimuxd/RxSwift/blob/master/Lectures/03_Subjects/Ch3.%20Subjects.md#c-publishsubjects로-작업하기): 빈 상태로 시작하여 새로운 값만을 subscriber에 방출한다.
+	* [BehaviorSubject](https://github.com/fimuxd/RxSwift/blob/master/Lectures/03_Subjects/Ch3.%20Subjects.md#d-behaviorsubjects로-작업하기): 하나의 초기값을 가진 상태로 시작하여, 새로운 subscriber에게 초기값 또는 최신값을 방출한다.
+	* [ReplaySubject](https://github.com/fimuxd/RxSwift/blob/master/Lectures/03_Subjects/Ch3.%20Subjects.md#e-replaysubjects로-작업하기): 버퍼를 두고 초기화하며, 버퍼 사이즈 만큼의 값들을 유지하면서 새로운 subscriber에게 방출한다.
+	* [Variable](https://github.com/fimuxd/RxSwift/blob/master/Lectures/03_Subjects/Ch3.%20Subjects.md#f-variables로-작업하기): `BehaviorSubject`를 래핑하고, 현재의 값을 상태로 보존한다. 가장 최신/초기 값만을 새로운 subscriber에게 방출한다. 
 
 ## C. PublishSubjects로 작업하기
 ### 1. 개념
@@ -59,7 +59,7 @@
 * PublishSubject는 구독된 순간 새로운 이벤트 수신을 알리고 싶을 때 용이하다.
 * 이런 활동은 구독을 멈추거나, `.completed`, `.error` 이벤트를 통해 Subject가 완전 종료될 때까지 지속된다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/1.%20publishsubject.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/03_Subjects/1.%20publishsubject.png?raw=true" height = 200>
 
 	* 상기 그림의 첫 번째 줄은 subject를 배포한 것이다. 두 번째 줄과 세 번째 줄이 subscriber 들이다.
 	* 아래로 향하는 화살표들은 이벤트의 방출, 위로 향하는 화살표들은 구독을 선언하는 것을 의미한다.
@@ -136,7 +136,7 @@
 
 * `BehaviorSubject`는 마지막 `.next` 이벤트를 새로운 구독자에게 반복한다는 점만 빼면 `PublishSubject`와 유사하다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/2.%20behaviorsubject.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/03_Subjects/2.%20behaviorsubject.png?raw=true" height = 200>
 
 	* 위 그림에서 첫 번째 줄이 subject 이며, 두 번째와 세 번째 줄이 각각의 subscriber 들이다. 
 	* 첫 번째 이벤트가 발생한 후 첫 번째 구독자가 구독을 시작했지만 `PublishSubject`와는 다르게 직전의 값`1`을 받는다.
@@ -210,7 +210,7 @@
 
 * `ReplaySubject`는 생성시 선택한 특정 크기까지, 방출하는 최신 요소를 일시적으로 캐시하거나 버퍼한다. 그런 다음에 해당 버퍼를 새 구독자에게 방출한다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/3.%20replaysubject.png?raw=true" height = 200> 
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/03_Subjects/3.%20replaysubject.png?raw=true" height = 200> 
 	
 	* 상단의 그림에서 첫 번째 줄이 subject, 아래에 있는 애들이 구독자들이다. 여기서 subject의 버퍼 사이즈는 2다. 첫 번째 구독자(두번째줄)는 subject와 함께 구독하므로 subject의 값들을 그대로 갖는다. 두번째 구독자(세번째줄)은 subject가 두개의 이벤트를 받은 후 구독하였지만 버퍼사이즈`2`만큼의 값을 역시 받을 수 있다.
 * **(주의)** `ReplaySubject`를 사용할 때 유념해야할 것이 있다. 바로 이러한 버퍼들은 메모리가 가지고 있다는 것이다. 
@@ -369,7 +369,7 @@
 * variable은 유동적이다.
 * observable처럼 구독할 수 있고, subject처럼 새로운 `.next`이벤트를 받을 때 마다 반응하도록 구독할 수 있다. 
 * 업데이트 구독없이 그냥 현재값을 확인하고 싶을 때 일회성으로 적용뙬 수 있다.
-* [두 번째 challenge](https://github.com/fimuxd/RxSwift/blob/master/03_Subjects/Ch3.%20Subjects.md#2-variable을-이용하여-유저-세션-상태를-관찰하고-체크하기)를 통해 확인해보자.
+* [두 번째 challenge](https://github.com/fimuxd/RxSwift/blob/master/Lectures/03_Subjects/Ch3.%20Subjects.md#2-variable을-이용하여-유저-세션-상태를-관찰하고-체크하기)를 통해 확인해보자.
 
 
 ## G. Challenges

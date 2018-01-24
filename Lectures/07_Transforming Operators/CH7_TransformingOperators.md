@@ -15,7 +15,7 @@
 
 * Observable의 독립적 요소들을 array로 넣는 가장 편리한 방법은 `toArray`를 사용하는 것이다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/07_Transforming%20Operators/1.%20toArray.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/07_Transforming%20Operators/1.%20toArray.png?raw=true" height = 200>
 	
 	* 상기의 marble diagram을 보면 `toArray`는 observable sequence의 요소들은 array의 요소들로 넣는다. 그리고 이렇게 구성된 array를 `.next` 이벤트를 통해 subscriber에게 방출한다.
 
@@ -48,7 +48,7 @@
 
 * RxSwift의 `map` 연산자는 Observable 에서 동작한다는 점만 제외하면 Swift 표준 라이브러리의 `map`과 같다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/07_Transforming%20Operators/2.%20map.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/07_Transforming%20Operators/2.%20map.png?raw=true" height = 200>
 
 	* `map`은 각각의 요소에서 2를 곱하는 클로저를 갖는다.
 
@@ -83,7 +83,7 @@
 
 ### 3. enumerated
 
-* Ch.5에서 `enumerated`와 `map`을 `filter`와 사용해본 적이 있다. ([다시보기](https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/Ch5.%20FilteringOperators.md#3-enumerated))
+* Ch.5에서 `enumerated`와 `map`을 `filter`와 사용해본 적이 있다. ([다시보기](https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/Ch5.%20FilteringOperators.md#3-enumerated))
 * 여기서 다시한번 살펴보자. 아래의 코드를 작성한다.
 
 	```swift
@@ -136,7 +136,7 @@
 * 먼저 문서에서의 `flatmap`에 대한 정의를 확인해보자. '`Observable sequence`의 각 요소를 `Observable sequence`에 투영하고 `Observable sequence`를 `Observable sequence`로 병합한다.' ~뭔솔?~
 * 아래의 marble diagram을 살펴보자
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/07_Transforming%20Operators/3.%20flatmap.png?raw=true" height = 250>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/07_Transforming%20Operators/3.%20flatmap.png?raw=true" height = 250>
 
 	* 첫 째줄의 Observable이 마지막 줄의 구독자에 가기까지의 과정을 보여주고 있다.
 	* 첫 Observable은 `Int`타입의 `value` 값을 가지고 있다. 각각의 고유한 값은 `01` = `1`, `02` = `2`, `03` = `3`을 의미한다.
@@ -208,7 +208,7 @@
 	* `switchLatest`에 대해서는 **Ch.9 Combining Operators** 에서 자세히 배울 것이다.  
 * 문서상 `flatMapLatest` 정의를 살펴보자. 'observable sequence의 각 요소들을 observable sequence들의 새로운 순서로 투영한 다음, observable sequence들의 observable sequence 중 가장 최근의 observable sequence 에서만 값을 생성한다.' ~네???~
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/07_Transforming%20Operators/4.%20flatMapLatest.png?raw=true" height = 250>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/07_Transforming%20Operators/4.%20flatMapLatest.png?raw=true" height = 250>
 
 	* 그림을 살펴보자. `flatMapLatest`는 `flatMap`과 같이, observable 속성 내의 observable 요소까지 접근한다. 
 	* 각각의 변환된 요소들은 구독자에게 제공될 새로운 observable로 flatten 된다. `flatMapLatest`가 `flatMap`과 다른 점은, 자동적으로 이전 observable을 구독해지한다는 것이다. 
@@ -321,7 +321,7 @@
 	
 * 여기서 `materialize` 연산사를 사용하여, 각각의 방출되는 이벤트를 이벤트의 observable로 만들 수 있다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/07_Transforming%20Operators/5.%20materialize.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/07_Transforming%20Operators/5.%20materialize.png?raw=true" height = 200>
 
 * 상기의 코드에 `materialize`를 추가해보자. 
 
@@ -347,7 +347,7 @@
 * 하지만 이렇게 하면 event는 받을 수 있지만 요소들은 받을 수 없다. 이 문제를 해소하기 위해 `dematerialize`를 사용할 수 있다. 
 * `dematerialize`는 기존의 모양으로 되돌려주는 역할을 한다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/07_Transforming%20Operators/6.%20dematerialize.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/07_Transforming%20Operators/6.%20dematerialize.png?raw=true" height = 200>
 
 * 앞서 작성한 코드에서 구독부분을 다음과 같이 바꿔봅시당
 
@@ -390,7 +390,7 @@
 
 ### Ch.5의 Challenge를 수정하여 영숫자 문자 가져오기
 
-* Ch.5 의 도전과제에서, 필터링 연산자를 통해 전화번호를 찾아보는 코드를 작성하였다. 사용자가 입력한 10자리 숫자를 기반으로 연락처를 조회하는데 필요한 코드를 추가했었다. ([다시보기](https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/Ch5.%20FilteringOperators.md#전화번호-만들기))
+* Ch.5 의 도전과제에서, 필터링 연산자를 통해 전화번호를 찾아보는 코드를 작성하였다. 사용자가 입력한 10자리 숫자를 기반으로 연락처를 조회하는데 필요한 코드를 추가했었다. ([다시보기](https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/Ch5.%20FilteringOperators.md#전화번호-만들기))
 * 이번 문제의 목표는, 기존의 코드를 수정하여, 문자를 통해 해당 번호로 변환할 수 있도록 하는 것이다. (표준 숫자 키패드가 있다고 가정했을 때, abc는 `2` 패드를 통해, def는 `3` 패드를 통해 입력할 수 있다.) 
 * 주어진 starter 파일에는 도우미 closure가 이미 작성되어있다. 이들을 사용해서 규칙에 맞지 않는 입력들을 구독에서 제외할 수 있었다. 그렇다면 남은 것은 무엇일까?
 	* 각각의 변환을 수행하기 위해 여러 개의 `map` 연산자를 사용할 것이다.

@@ -9,7 +9,7 @@
 
 ### 1. .ignoreElements()
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/1.ignoreElements.png?raw=true" height = 150>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/1.ignoreElements.png?raw=true" height = 150>
 
 * `ignoreElements`는 `.next` 이벤트를 무시한다. `completed`나 `.error` 같은 정지 이벤트는 허용한다. [Marble diagram 참고](http://rxmarbles.com/#ignoreElements)
 * 다음과 같은 ~야구게임~ 코드를 확인해보자
@@ -49,7 +49,7 @@
 
 * 야구에서처럼 세 번째 스트라이크와 같이, Observable에서 방출된 n번째 요소만 처리하려는 경우가 있을 수 있다. 이 때 `elementAt()`을 쓸 수 있다. 이 것은 받고싶은 요소에 해당하는 index만을 방출하고 나머지는 무시한다. 
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/2.%20elementAt.png?raw=true" height = 150> 
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/2.%20elementAt.png?raw=true" height = 150> 
 
 * 다음의 코드를 보자.
 
@@ -85,7 +85,7 @@
 * `ignoreElements`와 `elementAt`은 observable의 요소들을 필터링하여 방출한다. 
 * `filter`는 필터링 요구사항이 한 가지 이상일 때 사용할 수 있다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/3.filter.png?raw=true" height = 150>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/3.filter.png?raw=true" height = 150>
 
 	* 그림에서 `filter`를 거치면 `1`, `2`만 필터된다. 왜냐하면 `filter`에서 3보다 작은 요소만 출력하라고 선언했기 때문이다.
 
@@ -123,7 +123,7 @@
 *  확실히 몇개의 요소를 skip 하고 싶을 수 있다.
 * `skip` 연산자는 첫 번째 요소부터 n개의 요소를 skip하게 해준다. 
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/4.%20skip.png?raw=true" height = 150>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/4.%20skip.png?raw=true" height = 150>
 
 	* 그림을 보면 `skip()` 연산자를 통해 처음 2개의 요소가 skip되는 것을 알 수 있다.
 * 다음 코드를 확인해보자.
@@ -153,7 +153,7 @@
 * 구독하는 동안 모든 요소를 필터링하는 `filter`와는 달리, `.skipWhile`은 어떤 요소를 skip하지 않을 때까지 skip하고 종료하는 연산자이다.
 * `skipwWhile`은 skip할 로직을 구성하고 해당 로직이 `false` 되었을 때 방출한다. `filter`와 반대다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/5.skipWhile.png?raw=true" height = 150>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/5.skipWhile.png?raw=true" height = 150>
 
 	* 그림을 보면, `1`은 무시된다. 왜냐하면 `skipWhile`문 내부에서 `true` 이기 때문. 
 	* `2`는 방출된다. 왜냐하면 `false` 이므로
@@ -188,7 +188,7 @@
 
 * 지금까지의 필터링은 고정 조건에서 이루어졌다. 만약에 다른 observable에 기반한 요소들을 다이나믹하게 필터하고 싶다면 어떻게 해야할까?
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/6.skipUntil.png?raw=true" height = 200>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/6.skipUntil.png?raw=true" height = 200>
 
 * `skipUnitl`은 다른 observable이 시동할 때까지 현재 observable에서 방출하는 이벤트를 skip 한다.
 * `skipUnitl`은 다른 observable이 `.next`이벤트를 방출하기 전까지는 기존 observable에서 방출하는 이벤트들을 무시하는 것이다. 
@@ -236,7 +236,7 @@
 * Taking은 skipping의 반대 개념이다.
 * RxSwift에서 어떤 요소를 취하고 싶을 때 사용할 수 있는 연산자는 `take`다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/7.take.png?raw=true" height = 150>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/7.take.png?raw=true" height = 150>
 	
 	* 그림을 보면 `take()`를 통해, 처음 2개의 값을 취한 것을 알 수 있다.
 * 다음 코드를 생각해보자
@@ -261,7 +261,7 @@
 ### 2. takeWhile
 * `takeWhile`은 `skipWhile`처럼 작동한다. 
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/8.takeWhile.png?raw=true" height = 150>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/8.takeWhile.png?raw=true" height = 150>
 	
 	* 그림과 같이 `takeWhile` 구문 내에 설정한 로직에서 `true`에 해당하는 값을 방출하게 된다.
 
@@ -307,7 +307,7 @@
 
 * `skipUntil`처럼 `takeUntil`도 있다. 
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/9.takeUntil.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/9.takeUntil.png?raw=true" height = 200>
 
 	* 그림과 같이, trigger가 되는 Observable이 구독되기 전까지의 이벤트값만 받는 것이다.
 * 아래의 코드를 살펴보자.
@@ -365,7 +365,7 @@
 
 ### 1. distinctUntilChanged
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/10.distincUntilChanged.png?raw=true" height = 150>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/10.distincUntilChanged.png?raw=true" height = 150>
 
 	* 그림에서처럼 `distinctUntilChanged`는 연달아 같은 값이 이어질 때 중복된 값을 막아주는 역할을 한다.
 	* `2`는 연달아 두 번 반복되었으므로 뒤에 나온 `2`가 배출되지 않았다.
@@ -396,7 +396,7 @@
 
 * `distinctUntilChanged`는 기본적으로 구현된 로직에 따라 같음을 확인한다. 그러나 커스텀한 비교로직을 구현하고 싶다면 `distinctUntilChanged(_:)`를 사용할 수 있다. 
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/05_Filtering%20Operators/11.distincUntilChanged().png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/11.distincUntilChanged().png?raw=true" height = 200>
 
 	* 그림은 `value`라 명명된 값을 서로 비교하여 중복되는 값을 제외하고 있다.
 * 아래의 코드를 살펴보자.

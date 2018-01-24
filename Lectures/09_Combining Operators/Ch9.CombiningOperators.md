@@ -12,7 +12,7 @@
 
 ### 1. startWith(_:)
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/1.prefixing.png?raw=true" height = 150>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/1.prefixing.png?raw=true" height = 150>
 
 * 예를 들면 "현재 위치"나 "네트워크 연결 상태" 같이 "현재 상태"가 필요한 상황이 있다. 이럴 때 현재 상태와 함께 초기값을 붙일 수 있다.
 * 다음 코드를 확인해보자.
@@ -50,7 +50,7 @@
 	* 방금 `startWith` 예제로 구현한 것은 하나의 값을 갖는 sequence를 다른 sequence에 연결한 것이다.
 	* `Observable.concat(_:)`을 통해서는 두개의 sequence를 묶을 수 있다. 
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/2.concat.png?raw=true" height = 200>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/2.concat.png?raw=true" height = 200>
 	
 * 하기 코드를 살펴보자
 
@@ -105,7 +105,7 @@
 
 ### 4. concatMap(_:)
 
-* ~이름에서 유추할 수 있듯이~  Ch.7에서 배운 `flatMap`과 밀접한 관련이 있다. (`flatMap` [다시보기](https://github.com/fimuxd/RxSwift/blob/master/07_Transforming%20Operators/CH7_TransformingOperators.md#1-flatmap))
+* ~이름에서 유추할 수 있듯이~  Ch.7에서 배운 `flatMap`과 밀접한 관련이 있다. (`flatMap` [다시보기](https://github.com/fimuxd/RxSwift/blob/master/Lectures/07_Transforming%20Operators/CH7_TransformingOperators.md#1-flatmap))
 * `flatMap`을 통과하면 `Observable` sequence가 구독을 위해 리턴되고, 방출된 observable들은 합쳐지게 된다. 
 * `concatMap`은 각각의 sequence가 다음 sequence가 구독되기 전에 합쳐진다는 것을 보증한다. 
 * 다음의 코드를 확인해보자.
@@ -140,7 +140,7 @@
 
 * RxSwift에는 sequence들을 합치는 다양한 방법들이 있다. 시작하기에 가장 쉬운 방법은 **`merge`**다. 
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/3.merging.png?raw=true" height = 250>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/3.merging.png?raw=true" height = 250>
 
 * 하기의 코드를 살펴보자
 
@@ -205,7 +205,7 @@
 
 ### 1. combineLatest(_:_:resultSelector:)
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/4.%20combiningElements.png?raw=true" height = 200>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/4.%20combiningElements.png?raw=true" height = 200>
 
 * 내부(결합된) sequence들은 값을 방출할 때마다, 제공한 클로저를 호출하며 우리는 각각의 내부 sequence들의 최종값을 받는다.
 * 여러 TextField를 한번에 관찰하고 값을 결합하거나 여러 소스들의 상태들을 보는 것과 같은 app이 있다.
@@ -298,7 +298,7 @@
 
 * 또 다른 결합 연산자로는 **`zip`**이 있다. 
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/5.%20zip.png?raw=true" height = 200>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/5.%20zip.png?raw=true" height = 200>
 
 * 다음과 같은 코드를 작성해보자.
 
@@ -351,7 +351,7 @@
 
 ### 1. withLatestFrom(_:)
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/6.%20trigger.png?raw=true" height = 200>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/6.%20trigger.png?raw=true" height = 200>
 
 * 다음과 같은 코드를 작성해보자.
 
@@ -383,7 +383,7 @@
 
 * `withLatestFrom(_:)`과 거의 똑같이 작동하지만, 한 번만 방출한다. 즉 여러번 새로운 이벤트를 통해 방아쇠 당기기를 해도 한번만 출력되는 것.
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/7.%20withLatestFrom.png?raw=true" height = 200>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/7.%20withLatestFrom.png?raw=true" height = 200>
 
 * 상기 코드에서 주석 2 부분을 아래와 같이 변경해보자.
 
@@ -410,7 +410,7 @@
 * `amb(_:)`에서 amb는 *ambiguous모호한* 이라 생각하면 된다. 
 * 두가지 sequence의 이벤트 중 어떤 것을 구독할지 선택할 수 있게 한다.
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/8.switches.png?raw=true" height = 200>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/8.switches.png?raw=true" height = 200>
 
 * 아래의 코드를 확인해보자.
 
@@ -444,7 +444,7 @@
 
 ### 2. switchLatest()
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/9.switchlatest.png?raw=true" height = 250>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/9.switchlatest.png?raw=true" height = 250>
 
 * 다음과 같은 코드를 작성해보자. 
 
@@ -494,7 +494,7 @@
 		* 2) `source`에 `switchLatest()`를 적용시키고 구독한다.
 		* 3) 코드를 입력하고 출력되는 결과를 확인한다.
 	* `source` observable로 들어온 마지막 sequence의 아이템만 구독하는 것을 볼 수 있다. 이 것이 `switchLatest`의 목적이다. 
-* `switchLatest()`는 Ch.7의 `flatMapLatest(_:)`와 유사하다. `flatMapLatest(_:)`는 observable의 마지막 값들을 매핑하여 구독한다. (`flatMapLatest` [다시보기](https://github.com/fimuxd/RxSwift/blob/master/07_Transforming%20Operators/CH7_TransformingOperators.md#2-flatmaplatest))  
+* `switchLatest()`는 Ch.7의 `flatMapLatest(_:)`와 유사하다. `flatMapLatest(_:)`는 observable의 마지막 값들을 매핑하여 구독한다. (`flatMapLatest` [다시보기](https://github.com/fimuxd/RxSwift/blob/master/Lectures/07_Transforming%20Operators/CH7_TransformingOperators.md#2-flatmaplatest))  
 	
 ## G. sequence내의 요소들간 결합
 
@@ -502,7 +502,7 @@
 
 * Swift 표준 라이브러리의 `reduce(:_:_)`를 이미 알고 있을 것이다.
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/10.reduce.png?raw=true" height = 150>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/10.reduce.png?raw=true" height = 150>
 
 * 다음 코드를 살펴보자.
 
@@ -530,7 +530,7 @@
 
 * 다음 그림에서 `sequence`와 `scan(_:accumulator)` 이 후의 값이 어떻게 다른지 확인해보자.
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/09_Combining%20Operators/11.%20scan.png?raw=true" height = 150 >
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/11.%20scan.png?raw=true" height = 150 >
 
 * 하기 코드를 살펴보자.
 

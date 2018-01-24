@@ -109,9 +109,9 @@ state(아마도 번역하자면 상태? 정도겠죠)는 정의하기 어려운 
 	* `error`: `Observable`이 에러를 발생하였으며, 추가적으로 이벤트를 생성하지 않을 것임을 의미 (에러와 함께 완전종료)
 * 아래 그림과 같이 시간에 걸쳐서 발생하는 비동기 이벤트를 생각해보자.
 	
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/01_HelloRxSwift/1.%20observableT.png?raw=true" height = 150>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/01_HelloRxSwift/1.%20observableT.png?raw=true" height = 150>
 	
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/01_HelloRxSwift/2.%20observableT.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/01_HelloRxSwift/2.%20observableT.png?raw=true" height = 200>
 	
 	* 상기 세 가지 유형의 Observable 이벤트는, `Observable` 또는 `Observer`의 본질에 대한 어떤 가정도 하지 않는다. 
 	* 따라서 델리게이트 프로토콜을 사용하거나, 클래스 통신을 위해 클로저를 삽입할 필요가 없다. 
@@ -207,7 +207,7 @@ state(아마도 번역하자면 상태? 정도겠죠)는 정의하기 어려운 
 * 이 책의 초기 반 정도에서 다룰 대부분의 예제는 아주 간단하고 일반적인 상황으로, 보통 데이터를 관찰하고 UI를 업데이트 하는 것이 대부분이다. 따라서 기초를 완전히 닦기 전까지 스케줄러를 공부할 필요는 없다.
 * (다만, 맛보기로..) 기존까지 GCD를 통해서 일련의 코드를 작성했다면 스케줄러를 통한 RxSwift는 다음과 같이 돌아간다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/01_HelloRxSwift/4.%20scheduler.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/01_HelloRxSwift/4.%20scheduler.png?raw=true" height = 200>
 	
 	* 각 색깔로 표시된 일들은 다음과 같이 각각 스케줄(1, 2, 3...)된다. 
 		* `network subscription`(파랑)은 (1)로 표시된 `Custom NSOperation Scheduler`에서 구동된다.
@@ -225,7 +225,7 @@ state(아마도 번역하자면 상태? 정도겠죠)는 정의하기 어려운 
 * 이 책에서는 MVC 패턴을 사용한다. (왜 ㅠㅠ)
 * 다음은 MVVM 아키텍처
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/01_HelloRxSwift/5.%20MVVM.png?raw=true" height = 200>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/01_HelloRxSwift/5.%20MVVM.png?raw=true" height = 200>
 
 
 ## F. RxCocoa

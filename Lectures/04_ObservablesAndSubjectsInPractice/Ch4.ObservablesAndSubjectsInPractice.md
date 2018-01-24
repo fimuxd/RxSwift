@@ -12,7 +12,7 @@
 
 * 뷰컨이 모든 observable을 dispose 할 때부터, dispose bag은 뷰컨이 소유한다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/04_ObservablesAndSubjectsInPractice/1.memoryControl.png?raw=true" height = 250>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/04_ObservablesAndSubjectsInPractice/1.memoryControl.png?raw=true" height = 250>
 	
 	* 위 그림은, Rx가 메모리 관리를 얼마나 쉽게 하는지 보여주고 있다.
 	* 그냥 `bag`에 구독을 던져놓으면, viewController가 할당 해제 될 때 폐기된다.
@@ -100,7 +100,7 @@
 	
 	* 이렇게 하고 앱을 실행해보면 (카메라롤 접근허용 창이 뜨고) `photosViewController`로 잘 넘어가는 것을 알 수 있다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/04_ObservablesAndSubjectsInPractice/2.delegate.png?raw=true" height = 250 >
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/04_ObservablesAndSubjectsInPractice/2.delegate.png?raw=true" height = 250 >
 	
 	* 기존의 Cocoa 프레임워크를 다음에 해야할 일은 `photosViewController`의 사진들을 `mainViewController`로 서로 통신하기 위해 delegate 프로토콜을 쓰는 것일 것이다. 하지만 이건 매우 Rx 답지아나!
 	* RxSwift에서는 (이런 ~그지같은~ 방법이 아닌) 두개의 **어떠한** 클래스라도 연결할 수 있는 아주 universal 한 방법이 있다. 바로 `Observable`이다! 어떠한 프로토콜도 정의할 필요없다. 왜냐하면 `Observable`은 어떤 종류의 메시지라도 자신을 구독하는 Observer에게 전달할 수 있기 때문이다. 
@@ -139,7 +139,7 @@
 
 * 프로토콜을 제거하면, 두 controller의 관계는 다음과 같이 아주 간단해진다.
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/04_ObservablesAndSubjectsInPractice/3.simple.png?raw=true" height = 250>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/04_ObservablesAndSubjectsInPractice/3.simple.png?raw=true" height = 250>
 	
 
 ### 2. 선택한 사진들에 대한 Sequence 관찰하기
@@ -226,13 +226,13 @@
 	* `Observable.just(_:)`: `.completed` 이벤트와 하나의 요소만 방출.
 	* `Observable.empty()`: `.completed` 이벤트만 방출.
 	* `Observable.error(_)`: 하나의 `.error` 이벤트만 방출
-* 그럼 추가로 궁금하다. 그럼 내가 배운 [Single](https://github.com/fimuxd/RxSwift/blob/master/02_Observables/Ch2.%20Observables.md#h-traits-사용)은 뭐여?
+* 그럼 추가로 궁금하다. 그럼 내가 배운 [Single](https://github.com/fimuxd/RxSwift/blob/master/Lectures/02_Observables/Ch2.%20Observables.md#h-traits-사용)은 뭐여?
 
 ## F. RxSwift trait 연습하기
 
 ### 1. Single
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/04_ObservablesAndSubjectsInPractice/4.%20single.png?raw=true" height = 100>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/04_ObservablesAndSubjectsInPractice/4.%20single.png?raw=true" height = 100>
 
 * Single은 `.success(Value)` 이벤트 또는 `.error` 이벤트를 한번만 방출한다.
 * `success` = `.next` + `.completed`
@@ -248,7 +248,7 @@
 
 * `Maybe`는 `Single`과 비슷하지만 유일하게 다른 점은 성공적으로 complete 되더라도 아무런 값을 방출하지 않을 수도 있다는 것이다.
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/04_ObservablesAndSubjectsInPractice/5.%20maybe.png?raw=true" height = 100>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/04_ObservablesAndSubjectsInPractice/5.%20maybe.png?raw=true" height = 100>
 
 * 사진을 가지고 있는 커스텀한 포토앨범앱이 있다. 그리고 그 앨범명은 UserDefaults에 저장될 것이고 해당 ID는 앨범을 열ㄹ고 사진을 저장할 때마다 남을 것이다. 
 * 이 때 `open(albumId:) -> Maybe<String>` 메소드를 통해 다음과 같은 상황을 관리할 수 있다.
@@ -261,7 +261,7 @@
 
 * `Completable`은 `.completed` 또는 `.error(Error)`만을 방출한다. 
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/04_ObservablesAndSubjectsInPractice/6.%20completable.png?raw=true" height = 100>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/04_ObservablesAndSubjectsInPractice/6.%20completable.png?raw=true" height = 100>
 
 * 하나 기억해야 할 것은, observable을 completable로 바꿀 수 없다는 것이다. 
 * observable이 값요소를 방출한 이상, 이 것을 completable로 바꿀 수는 없다. 

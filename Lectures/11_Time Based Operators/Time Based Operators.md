@@ -98,7 +98,7 @@
  		* 9) 마지막으로, stack view가 표시될 host view를 구축하자. 
  			* 두 개의 타입라인을 확인할 수 있다. 위쪽의 타임라인은 `connect()`라는 observer를 반영하고 있다. 아래쪽의 타임라인은 딜레이 이후에 구독되는 observable을 보여주고 있다.
  
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/11_Time%20Based%20Operators/1.%20result.png?raw=true" height = 300>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/11_Time%20Based%20Operators/1.%20result.png?raw=true" height = 300>
  
  	* 사용한 설정에서는 `replayedElements`는 `1`과 같다. 이는 `replay(_:)` 연산자가 source observable에서 마지막으로 방출하는 값만을 버퍼로 두기 때문이다. 
  	* 타임라인을 보면, 두번째 구독자가 `3`, `4` 요소들을 동시에 받은 것을 알 수 있다. 구독하는 시간에 따라, 마지막 버퍼값인 `3`과, 두번째 구독을 함으로써 받은 `4`를 동시에 받은 것이다. (사실 정확히 같은 순간은 아니다.)
@@ -168,7 +168,7 @@
 		 	* `buffer(_:scheduler:)` 연산자는 source observable에서 받을 것이 없으면 일정 간격으로 빈 array를 방출한다. `0`는 source observable에서 0개의 요소가 방출되었음을 의미한다. 
 		 	* 이제 source observable에 데이터를 공급할 수 있다. 버퍼링 된 observable에 어떤 영향이 나타나는지 확인해보자. 먼저 5초동안 3개의 요소를 집어 넣어보자. 
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/11_Time%20Based%20Operators/2.%20buffer.png?raw=true" height = 300>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/11_Time%20Based%20Operators/2.%20buffer.png?raw=true" height = 300>
 
 	* 각각의 박스는 방출된 array들마다 몇개의 요소를 가지고 있는지 보여준다.
 	* 최초에 버퍼 타임라인은 빈 array를 방출한다. - 왜냐하면 source observable에는 아직 아무런 요소가 없기 때문이다.
@@ -187,7 +187,7 @@
 	
 	* 1/0.7 간격으로 sourceObservable에 🐱를 푸시하게 된다. 
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/11_Time%20Based%20Operators/3.%20buffer.png?raw=true" height = 300>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/11_Time%20Based%20Operators/3.%20buffer.png?raw=true" height = 300>
 
 ### 4. buffered observables의 `window`
 
@@ -261,7 +261,7 @@
 			* 여기서 tuple속 `value`는 `String?` 타입이다. 만약 값이 `nil`이라면 sequence가 종료되었음을 의미한다. 
 		* 7) 화면에 표시한다.   
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/11_Time%20Based%20Operators/4.%20window.png?raw=true" height = 600 >
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/11_Time%20Based%20Operators/4.%20window.png?raw=true" height = 600 >
 
 	* 두번째 타임라인부터 살펴보면, 모든 타임라인은 "가장 최근의 것" 이다. 이 그림은 windowed observable당 최대 5개 요소를 가지고 4초마다 `window` 되도록 했다. 이 것은 새로운 observable이 적어도 4초마다 생성된다는 것을 의미한다. 5개의 요소를 모은 순간에 방출될 것이다.
 	* source observable이 window 될 동안 4개보다 많은 요소를 방출하면, 새로운 observable이 생성되고, 다시 이 과정을 반복하게 된다. 
@@ -281,7 +281,7 @@
 	* 이름에서 유추할 수 있듯이, 구독을 시작한 후 요소를 받기 시작하는 시점을 지연하는 역할을 한다.
 	* `delayInSeconds`에 정의된 것에 따라 지연 이후 보여질 요소들을 선택하기 시작한다. 
 
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/11_Time%20Based%20Operators/5.%20delay.png?raw=true" height = 300>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/11_Time%20Based%20Operators/5.%20delay.png?raw=true" height = 300>
 
 * Rx에서 observable에 대해 "cold" 또는 "hot"이라 명명한다. "cold" observable들은 요소를 등록할 때, 방출이 시작된다. "hot" observable들은 어떤 시점에서부터 영구적으로 작동하는 것이다. (Notifications 같은) 구독을 지연시켰을 때, "cold" observable이라면 지연에 따른 차이가 없다. "hot" observable이라면 예제에서와 같이 일정 요소를 건너뛰게 된다. 정리하면, "cold" observable은 구독할 때만 이벤트를 방출하지만, "hot" observable은 구독과 관계없이 이벤트를 방출한다는 것이다. 
 	
@@ -297,7 +297,7 @@
 	    .subscribe(delayedTimeline)
 	```
 	
-<img src = "https://github.com/fimuxd/RxSwift/blob/master/11_Time%20Based%20Operators/6.%20delay.png?raw=true" height = 300>
+<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/11_Time%20Based%20Operators/6.%20delay.png?raw=true" height = 300>
 
 ## D. Timer operators
 
@@ -320,7 +320,7 @@
 	* `Observable.interval(_:scheduler:)`은 observable 을 생성하므로 구독은 손쉽게 `dispose()`로 취소할 수 있다. 구독이 취소된다는 것은 즉 타이머를 멈춘다는 것을 의미한다.
 * observable에 대한 구독이 시작된 이후 정의된 간격동안 첫번째 값을 방출 시킬 수 있는 아주 명확한 방법이다. 또한 타이머는 이 시점 이전에는 절대 시작하지 않는다. 구독은 시작을 위한 방아쇠 역할을 하게 되는 것이다. 
 
-	<img src = "https://github.com/fimuxd/RxSwift/blob/master/11_Time%20Based%20Operators/7.%20timer.png?raw=true" height = 300>
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/11_Time%20Based%20Operators/7.%20timer.png?raw=true" height = 300>
 
 	* 타임라인에서 확인할 수 있듯이, `Observable.interval(_:scheduler:)`를 통해 방출된 값은 `0`부터 시작한다. 다른 값이 필요하다면, `map(_:)`을 이용할 수 있다. 
 	* 현업에서는 보통, 타이머를 통해 값을 방출하진 않는다. 다만 아주 편리하게 index를 생성할 수 있는 방법이 된다.
