@@ -31,7 +31,7 @@ class ViewModelImpl: ViewModel {
 //        )
         
         let delta = actionOccurred
-            .map { action -> Int i
+            .map { action -> Int in
                 switch action {
                 case .up: return 1
                 case .down: return -1

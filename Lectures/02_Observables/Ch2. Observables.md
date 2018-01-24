@@ -91,7 +91,7 @@ public func example(of description: String, action: () -> Void) {
 		* ii) `one` 정수를 이용한 `just` method를 통해 `Int` 타입의 Observable sequence를 만들 것
 	* `just`는 `Observable`의 타입 메소드. 이름에서 추측할 수 있듯, 오직 하나의 요소를 포함하는 Observable sequence를 생성한다.
 		* 내가 이해한게 맞다면 상기코드의 `observable`은 `1` 을 뿜! 할 듯.
-	* Rx에는 **operator***(연산자)가 있으니 이걸 이용할 수 있을 것임
+	* Rx에는 ***operator***(연산자)가 있으니 이걸 이용할 수 있을 것임
 * 상기 코드 하단에 아래 코드를 추가해봅시다.
 
 	```swift
@@ -465,7 +465,8 @@ public func example(of description: String, action: () -> Void) {
 		 Disposed
 		*/
 		```
-	* 만약 `.completed`나 `.error` 이벤트 모두 방출하지 않고 disposeBag 에 어떠한 구독도 추가하지 않는다면 어떻게 될까? (주석 5, 2와 가장 마지막 `.disposed(by: disposeBag)`를 주석처리 또는 지워보자)		* 두 개의 `onNext`	요소인 `1`과 `?`가 모두 찍힐 것이다. 
+	* 만약 `.completed`나 `.error` 이벤트 모두 방출하지 않고 disposeBag 에 어떠한 구독도 추가하지 않는다면 어떻게 될까? (주석 5, 2와 가장 마지막 `.disposed(by: disposeBag)`를 주석처리 또는 지워보자)
+		* 두 개의 `onNext`	요소인 `1`과 `?`가 모두 찍힐 것이다. 
 	
 ## G. observable fatory 만들기
 * subscriber를 기다리는 (날 시동시켜줘!) Observable을 만드는 대신, 각 subscriber에게 새롭게 Observable 항목을 제공하는 Obaservable factory를 만드는 방법도 있다. 
