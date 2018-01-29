@@ -251,11 +251,80 @@
 ### 3. 병렬적으로 다운로드 하기
 
 * EONET API가 open과 closed 이벤트를 별도로 전달한다는 점을 기억하자. 지금까지는 `concat(_:)`을 사용했다. RxSwift의 좋은 점은 이들을 어떤 UI 코드에 영향없이 바꿀 수 있다는 점이다. EONET 서비스 클래스는 `[EOEvent]` observable을 배출하고, 이 녀석은 리퀘스트 개수에 영향을 받지 않는다. 
-* `EONET.swift` 파일을 열어서 `events(forLast:)`로 이동하자. 그리고 ``
+* `EONET.swift` 파일을 열어서 `events(forLast:)`로 이동하자. 그리고 `event(forLast:)`의 `return` 문을 다음의 코드로 대체하자.
+
+	```swift
+	return Observable.of(openEvents, closedEvents)
+		.merge()
+		.reduce([]) { running, new in 
+			running + new
+		}
+	```
+	
+	* 먼저, observable을 가지는 observable을 만들었다.
+	* `merge()` 연산자를 이용해서 이 둘을 합친다. 이들은 소스 observable에 의해 방출된 각 observable들과 방출된 요소들을 구독한다. 
+	* array 형태의 결과물을 만든다. 빈 array로 시작하여 매번 observable이 이벤트 array를 전달하고, 클로저는 호출된다. 기존의 array에 새로운 array를 더한 다음 반환한다. 이는 observable이 complete 될 때까지 진행 상태를 유지하게 된다. 한번 complete 되면, `reduce`는 하나의 값(현재 상태)를 방출한 뒤 complete 된다. 
+
+ 		<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/10_Combining%20Operators%20in%20Practice/4.%20merge.png?raw=true" height = 100>
+ 		
+* 앱을 구동해보자. 아마 미세하게 다운로드 시간이 개선된 것을 확인할 수 있을 것이다. 
+* UI code를 건드리지 않고도 EONET 서비스 과정을 변경할 수 있다는 점은 아주 매력적이다. 이것이 Rx 코드의 큰 장점 중 하나다. producer와 consumer를 깔끔하게 분리함으로써 많은 유동성을 제공해주는 것이다.
 
 ## F. Events view controller
 
-## G. Wiring the days selector
+* `EvnetsViewController.swift`를 열고 다음의 프로퍼티들을 추가하자.
+
+	```swift
+	let events = Variable<[EOEvent]>([])
+	let disposeBag = DisposeBag()
+	```
+
+* `events`가 새로운 값을 받을 때마다 테이블 뷰가 업데이트 될 수 있도록 `viewDidLoad()`에 다음 코드를 추가하자.
+
+	```swift
+	events.asObservable()
+		.subscribe(onNext: { [weak self] _ in 
+			self?.tableView.reloadData()
+		})
+		.disposed(by: disposeBag)
+	```
+
+	* 이벤트가 background 큐에서 방출될 수 있기 때문에 업데이트가 메인 큐에서 발생하는지 확인하는 것이 좋다. 
+
+* 이제 `tableView(_:numberOfRowsInSection:):` 부분을 다음과 같이 변경한다.
+
+	```swift
+	return events.value.count
+	```
+
+* `tableView(_:cellForRowAt:)`에 다음과 같이 셀을 configure한다.
+
+	```swift
+	let event = events.value[indexPath.row]
+	cell.configure(event: event)
+	```
+
+* view controller에 이벤트를 푸쉬하는 역할을 할 다음 코드를 `CategoriesViewController`에 추가한다.
+
+	```swift
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let category = categories.value[indexPath.row]
+		if !category.events.isEmpty {
+			let eventsController = storyboard!.instantiateVeiwController(withIdentifier: "events") as! EventsViewController
+			eventsController.title = category.name
+			eventsController.events.value = category.events
+			
+			navigationController!.pushViewController(eventsController, animated: true)
+		}
+		tableView.deselectedRow(at: indexPath, animated: true)
+	}
+	```
+	
+	* Event view controller의 `Variable<[EOEvent]>` 은 이벤트들을 가진다. 이 variable의 값은 자동적으로 테이블뷰의 업데이트를 시작시킨다. view의 로딩 여부는 중요하지 않다. observable아 고마워!
+	
+## G. days selector 연결하기
+
+* 
 
 ## H. Splitting event downloads
 ### 1. Adding per-category event downloads to EONET
