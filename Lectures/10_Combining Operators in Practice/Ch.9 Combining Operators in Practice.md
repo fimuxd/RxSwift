@@ -234,10 +234,24 @@
 	    .disposed(by: disposeBag)
 	```
 	
-	* 여기서 `concat(_:)`을 사용하여 
+	* 여기서 `concat(_:)`을 사용하여 `eoCategories` observable과 `updatedCategories` observable에서 나온 아이템들을 바인딩하였다.
+		
+### 2. 디스플레이 업데이트 하기
+
+* 이벤트 수를 표시하고 인디케이터를 표시하기 위해 `tableView(_:cellForRowAt:)` 업데이트를 해야한다.
+* cell의 `textLabel` 설정을 변경하고 인디케이터를 추가한다. 
+
+	```swift
+	cell.textLabel?.text = "\(category.name) (\(category.events.count)"
+	cell.accessoryType = (category.events.count > 0) ? .disclosureIndicator : .none
+	```
 	
-### 2. Updating the display
-### 3. Downloading in parallel
+* 앱을 구동해보면 제대로 작동하는 것을 알 수 있다. 하지만 카테고리가 나타나고 이벤트로 채워지기 전에 상당 시간 지연되는 것을 알 수 있다. 이건 EONET API가 업데이트 하는데 시간이 필요하기 때문이다. 아무튼 우리는 지난 한 해의 데이터를 리퀘스트 해야한다! 이걸 개선하려면 뭘 할 수 있을까?
+
+### 3. 병렬적으로 다운로드 하기
+
+* EONET API가 open과 closed 이벤트를 별도로 전달한다는 점을 기억하자. 지금까지는 `concat(_:)`을 사용했다. RxSwift의 좋은 점은 이들을 어떤 UI 코드에 영향없이 바꿀 수 있다는 점이다. EONET 서비스 클래스는 `[EOEvent]` observable을 배출하고, 이 녀석은 리퀘스트 개수에 영향을 받지 않는다. 
+* `EONET.swift` 파일을 열어서 `events(forLast:)`로 이동하자. 그리고 ``
 
 ## F. Events view controller
 
