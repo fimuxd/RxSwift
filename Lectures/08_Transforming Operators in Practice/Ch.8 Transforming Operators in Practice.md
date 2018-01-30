@@ -385,3 +385,7 @@
 >     return Observable.from(items.map { $0["full_name"] as! String })
 > }
 > ```
+ 
+
+***
+##### Artwork/images/designs: from RxSwift: Reactive Programming in Swift book, available at http://www.raywenderlich.com

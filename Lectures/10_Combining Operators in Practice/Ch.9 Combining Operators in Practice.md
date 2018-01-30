@@ -310,13 +310,13 @@
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let category = categories.value[indexPath.row]
 		if !category.events.isEmpty {
-			let eventsController = storyboard!.instantiateVeiwController(withIdentifier: "events") as! EventsViewController
+			let eventsController = storyboard!.instantiateViewController(withIdentifier: "events") as! EventsViewController
 			eventsController.title = category.name
 			eventsController.events.value = category.events
 			
 			navigationController!.pushViewController(eventsController, animated: true)
 		}
-		tableView.deselectedRow(at: indexPath, animated: true)
+		tableView.deselectRow(at: indexPath, animated: true)
 	}
 	```
 	
@@ -324,13 +324,183 @@
 	
 ## G. days selector 연결하기
 
-* 
+* 연결*wire*에 대한 일반적인 접근법은 다음과 같다.
+	* 현재 슬라이더 값을 Variable<Int> 에 바인딩 한다.
+	* 슬라이더 값을 가지는 이벤트만 필터한 이벤트 리스트로 결합한다.
+	* 테이블뷰를 필터된 이벤트들로 바인드 한다.
+* `days`와 `filteredEvents` 라는 variable들을 `EventsViewController`에 추가한다.
 
-## H. Splitting event downloads
-### 1. Adding per-category event downloads to EONET
-### 2. Incrementally updating the UI
-### 3. Just one more thing
+	```swift
+	let days = Variable<Int>(360)
+	let filteredEvents = Variable<[EOEvent]>([])
+	```
+	
+	* 이벤트를 필터하려면 최근 `days` 값에 `events`를 더한 뒤 필터해야한다. 우리는 최근 N일 동안의 데이터에만 관심이 있다. 
+* 다음의 코드를 `viewDidLoad()`에 추가하자.
+
+	```swift
+	Observable.combineLatest(days.asObservable(), events.asObservable()) { (days, events) -> [EOEvent] in
+	    let maxInterval = TimeInterval(days * 24 * 3600)
+	    return events.filter { event in
+	        if let date = event.closeDate {
+	            return abs(date.timeIntervalSinceNow) < maxInterval
+	        }
+	        return true
+	    }
+	}
+	.bind(to: filteredEvents)
+	.disposed(by: disposeBag)
+	``` 
+	
+	* 여기서는 `combineLastest`를 사용하였다. `days`와 `events` variable을 결합한 것이다. 여기서의 클로저는 에빈트를 필터하고 필요하다고 설정한 일수 만큼의 이벤트만을 필터링한다. 
+	* 이렇게 작성한 observable을 `filteredEvnets` variable에 바인딩할 수 있다. 
+* 이제 두 개의 바인딩 작업을 해야 한다.
+	* `filterEvents`를 테이블 뷰에 바인딩 
+		* 테이블뷰를 업데이트 하기 위해 `viewDidLoad()`내에 `events`를 `filteredEvents`로 바꾸자	
+			```swift
+			filteredEvents.asObservable()
+				.subscribe(onNext: { [weak self] _ in 
+					self?.tableView.reloadData()
+				})
+				.disposed(by: disposeBag)
+			```
+			
+	* `days`값을 슬라이더에 바인딩
+		* `sliderAction(_:)` 함수 - 스토리보드의 days slider는 이미 action 메소드로 연결되어있다. 사용자가 언제든지 슬라이더를 이동하여 `days`를 업데이트 할 수 있도록 다음 코드를 추가하자.
+		
+			```swift
+			days.value = Int(slider.value)
+			```
+			
+		* 이제 `tableView(_:numberOfRowsInSection:)`의 반환값을 다음과 같이 수정하자.
+
+			```swift
+			return filteredEvents.value.count
+			```
+		
+		* 변경 값을 다른 data source 메소드에도 반영할 필요가 있다. `tableView(_:cellForRowAt:)` 의 `event` 부분을 다음으로 변경하자.
+
+			```swift
+			let event = filteredEvents.value[indexPath.row]
+			```
+		
+		* `viewDidLoad()`로 가서 다음 코드를 추가하자.
+
+			```swift
+			days.asObservable()
+			    .subscribe(onNext: { [weak self] days in
+			        self?.daysLabel.text = "Last \(days) days"
+			    })
+			    .disposed(by: disposeBag)
+			```
+
+## H. 이벤트 다운로드 쪼개보기
+
+* 카테고리별로 다운로드를 쪼개보는 작업을 할 것이다. EONET API를 통해 모든 이벤트를 한번에 다운로드 받을 수도 있지만, 카테고리별로 다운로드 하는 것도 가능하다.
+* 여기서 진행할 작업은 다음과 같다.
+	* 먼저 카테고리를 받는다.
+	* 각각의 카테고리에 대해서 이벤트를 리퀘스트한다.
+	* 새로운 이벤트 블록이 올 때마다 카테고리를 업데이트 하고 테이블뷰를 새로고침한다.
+	* 모든 카테고리가 이벤트값을 가질 때까지 계속한다. 
+
+### 1. EONET에 카테고리별 이벤트 다운로드 추가하기
+
+* 카테고리별로 이벤트를 다운로드하기 위해서 접근할 API내 정확한 endpoint를 확인해야 한다. **EONET.swift**의 `events(forLast:closed:)`내의 endpoint 부분을 다음과 같이 수정하자.
+	
+	```	swift
+	fileprivate static func events(forLast days: Int, closed: Bool, endpoint: String) -> Observable<[EOEvent]> {
+	    return request(endpoint: endpoint, query: ["days": NSNumber(value: days),
+	                                                     "status": (closed ? "closed" : "open")])
+	        .map { json in
+	            guard let raw = json["events"] as? [[String: Any]] else { throw EOError.invalidJSON(endpoint)}
+	            return raw.flatMap(EOEvent.init)
+	        }
+	        .catchErrorJustReturn([])
+	}
+	```
+	
+* `events(forLast:)` 메소드로 가서 다음과 같이 수정하자.
+
+	```swift
+	static func events(forLast days: Int = 360, category: EOCategory) -> Observable<[EOEvent]> {
+	    let openEvents = events(forLast: days, closed: false, endpoint: category.endpoint)
+	    let closedEvents = events(forLast: days, closed: true, endpoint: category.endpoint)
+	    
+	    return Observable.of(openEvents, closedEvents)
+	        .merge()
+	        .reduce([]) { running, new in
+	            running + new
+	    }
+	}
+	```
+	
+* 이로써 서비스 부분을 업데이트 하는 것은 끝났다.
+
+### 2. 서서히 UI 업데이트하기
+
+* `CategoriesViewController`로 이동하여 Rx 액션을 추가할 차례다.
+* 다운로드한 각각의 카테고리의 이벤트들은 `flatMap`을 통해 하나의 observable로 나열될 수 있다. 
+* `CategoriesViewControoler.swift`내에 `startDownload()`를 확인하면 parameter가 없다며 컴파일러가 에러를 표시하고 있는 것을 확인할 수 있을 것이다. 해당 부분의 코드를 다음으로 수정해주자.
+
+	```swift
+	let downloadedEvents = eoCategories.flatMap { categories in
+	    return Observable.from(categories.map { category in
+	        EONET.events(forLast: 360, category: category)
+	    })
+	    }
+	    .merge()
+	```
+	
+	* 먼저 모든 카테고리를 받을 것이다.
+	* 그런 다음 `flatMap`을 호출하여 받은 카테고리들을 각각의 카테고리에 대해 하나의 이벤트 observable을 방출하는 observable로 변환한다.
+	* 그리고 이 모든 observable들을 하나의 이벤트 array로 병합한다.
+* 지금까지 변경한 내용을 반영하기 위해 `updatedCategories`의 코드도 수정해야 한다. `startDownload()` 내의 `updateCategories` 부분을 다음과 같이 변경하자.
+
+	```swift
+	let updatedCategories = eoCategories.flatMap { categories in
+	    downloadedEvents.scan(categories) { updated, events in
+	        return updated.map { category in
+	            let eventsForCategory = EONET.filteredEvents(events: events, forCategory: category)
+	            if !eventsForCategory.isEmpty {
+	                var cat = category
+	                cat.events = cat.events + eventsForCategory
+	                return cat
+	            }
+	            return category
+	        }
+	    }
+	}
+	```
+	
+	* `scan(:accumulator:)` 연산자는 소스 observable이 방출하는 모든 값을 축적한 값을 방출한다. 여기서의 축적값은 카테고리의 업데이트 목록이다.
+	* 따라서 새로운 이벤트 그룹이 도달할 때마다, `scan`은 카테고리 업데이트를 방출한다. `updateCategories` observable이 `categories` variable을 기반하는 한, 테이블뷰는 업데이트 될 것이다.
+
+		<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/10_Combining%20Operators%20in%20Practice/5.%20flatMapMerge.png?raw=true" height = 180>
+		
+### 3. 하나만 더
+
+* 만약 우리가 25개의 카테고리를 가지고 있고, 각각에 대해 API 리퀘스트를 두번만 한다고 해도 50개의 리퀘스트를 EONET 서버에 하게 될 것이다. 따라서 API의 최대접속제한값에 닿지 않으려면 동시 송신 요청 수를 제한할 필요가 있다.
+* `downloadedEvents` variable의 `merge()` 부분을 다음과 같이 변경하자.
+	
+	```swift
+	.merge(maxConcurrent: 2)
+	``` 
+	
+	* 이 간단한 변화로 observable의 수와 관계없이 동시에 2개까지만 구독하게 된다. 각 이벤트 다운로드는 두개의 리퀘스트를 하므로 한번에 네 가지 리퀘스트만 실행된다. 다른 슬롯은, 슬롯이 확보될 때까지 보류 상태가 된다. 
 
 ## I. Challenges
+
 ### 1. Challenge 1
+
+* 네비게이션 바에 activity indicator를 두고 이벤트를 패칭하기 시작할 때 돌아가도록 한다. 네트워크로부터 모든 데이터가 패치되면 사라지게 된다.
+
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/10_Combining%20Operators%20in%20Practice/6.%20challenge1.png?raw=true" height = 50 >
+
 ### 2. Challenge 2
+
+* 이젠 indicator 대신에 다운로드 progress indicator를 추가해보자. 
+
+	<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/10_Combining%20Operators%20in%20Practice/7.%20challenge2.png?raw=true" height = 50 >
+
+***
+##### Artwork/images/designs: from RxSwift: Reactive Programming in Swift book, available at http://www.raywenderlich.com
