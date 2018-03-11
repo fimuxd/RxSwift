@@ -72,7 +72,7 @@
 > Rx 무식자인 저의 눈높이에 맞춰 가르쳐주시는 멘토분들입니다. 고맙습니다. 
 
 * [studiogaram](https://github.com/studiogaram)
-* [dooho1016](https://github.com/dooho1016)
+* [doohochang](https://github.com/doohochang)
 * [surida](https://github.com/surida)
 
 ## ContactMe
