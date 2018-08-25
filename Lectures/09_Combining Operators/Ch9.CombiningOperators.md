@@ -304,7 +304,7 @@
 
 	```swift
 	example(of: "zip") {
-	    
+
 	    // 1
 	    enum Weatehr {
 	        case cloudy
@@ -532,7 +532,7 @@
 
 <img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/11.%20scan.png?raw=true" height = 150 >
 
-* 하기 코드를 살펴보자.
+* 다음 코드를 살펴보자.
 
 	```swift
 
