@@ -297,7 +297,7 @@ public func example(of description: String, action: () -> Void) {
 	}
 	```
 	* 주석대로 하나씩 살펴보면,
-		* 1) `range` 연산자를 이용해서 `start` 부터 `count`까지의 값을 갖는 Observable을 생성한다.
+		* 1) `range` 연산자를 이용해서 `start` 부터 `count`크기 만큼의 값을 갖는 Observable을 생성한다.
 		* 2) 각각 방출된 요소에 대한 n번째 피보나치 숫자를 계산하고 출력한다.
 	* 추후 Ch7. Transforming Operators 에서 배울 내용에는, 방출된 요소들을 변형하는 방법으로 `onNext` 핸들러보다 더 나은 방법들을 배울 수 있다.
 	
