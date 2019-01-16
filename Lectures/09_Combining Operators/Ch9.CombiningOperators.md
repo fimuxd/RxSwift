@@ -138,7 +138,7 @@
 
 ### 1. merge()
 
-* RxSwift에는 sequence들을 합치는 다양한 방법들이 있다. 시작하기에 가장 쉬운 방법은 **`merge`**다.
+* RxSwift에는 sequence들을 합치는 다양한 방법들이 있다. 시작하기에 가장 쉬운 방법은 `merge`다.
 
 <img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/09_Combining%20Operators/3.merging.png?raw=true" height = 250>
 
@@ -547,7 +547,7 @@
 	     4
 	     9
 	     16
-	     26
+	     25
 	    */
 	}
 	```
