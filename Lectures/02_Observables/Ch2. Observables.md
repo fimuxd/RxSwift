@@ -545,7 +545,7 @@ public func example(of description: String, action: () -> Void) {
 		example(of: "Single") {
 		    
 		    // 1
-		    let disposeBage = DisposeBag()
+		    let disposeBag = DisposeBag()
 		    
 		    // 2
 		    enum FileReadError: Error {
