@@ -330,6 +330,7 @@ public func example(of description: String, action: () -> Void) {
 		* 2) 이 Observable을 구독해봅니다. 여기서는 `subscripe`를 이용해 `Disposable`을 리턴하도록 한다.
 		* 3) 출력된 각각의 이벤트들을 프린트 한다.
 	* 여기서 구독을 취소하고 싶으면 `dispose()`를 호출하면 된다. 구독을 취소하거나 *dispose* 한 뒤에는 이벤트 방출이 정지된다.
+    * 현재 `observable` 안에는 3개의 요소만 있으므로 `dispose()` 를 호출하지 않아도 `Completed`가 프린트 되지만, 요소가 무한히 있다면 `dispose()` 를 호출해야 `Completed` 가 프린트 된다.
 
 ### 2. DisposeBag()
 * 각각의 구독에 대해서 일일히 관리하는 것은 효율적이지 못하기 때문에, RxSwift에서 제공하는 `DisposedBag` 타입을 이용할 수 있다. 
