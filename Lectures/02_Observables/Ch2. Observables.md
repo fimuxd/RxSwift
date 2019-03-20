@@ -468,6 +468,7 @@ public func example(of description: String, action: () -> Void) {
 		```
 	* 만약 `.completed`나 `.error` 이벤트 모두 방출하지 않고 disposeBag 에 어떠한 구독도 추가하지 않는다면 어떻게 될까? (주석 5, 2와 가장 마지막 `.disposed(by: disposeBag)`를 주석처리 또는 지워보자)
 		* 두 개의 `onNext`	요소인 `1`과 `?`가 모두 찍힐 것이다. 
+        * 하지만 종료를 위한 이벤트도 방출하지 않고 `.disposed(by: disposeBag)` 도 하지 않기 때문에 결과적으로 메모리 낭비가 발생하게 될 것이다.
 	
 ## G. observable fatory 만들기
 * subscriber를 기다리는 (날 시동시켜줘!) Observable을 만드는 대신, 각 subscriber에게 새롭게 Observable 항목을 제공하는 Obaservable factory를 만드는 방법도 있다. 
@@ -587,7 +588,7 @@ public func example(of description: String, action: () -> Void) {
 		```
 		
 		* 주석대로 하나씩 살펴보면, 
-			* 1) 있다가 쓸 dispose bag을 생성
+			* 1) 이따가 쓸 dispose bag을 생성
 			* 2) 디스크의 데이터를 읽으면서 발생할 수 있는 에러를 `Error` enum을 통해 정의함
 			* 3) 디스크의 파일로부터 텍스트를 불러와서 `single`을 리턴하는 함수를 생성
 			* 4) `single`을 생성하고 리턴함
