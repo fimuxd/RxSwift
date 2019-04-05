@@ -189,7 +189,7 @@
 	* 주석을 따라 하나씩 살펴보자.
 		* 1) `ryan`과 `charlotte`라는 두 개의 `Student` 인스턴스를 만들자
 		* 2) `Student` 타입의 source subject를 만든다.
-		* 3) `flatMap`을 사용해서 `student` subject와 subjec가 갖는 `score`값에 접근한다. `score`를 수정하지 말고 일단 통과하게 하자.
+		* 3) `flatMap`을 사용해서 `student` subject와 subject가 갖는 `score`값에 접근한다. `score`를 수정하지 말고 일단 통과하게 하자.
 		* 4) `.next` 이벤트의 요소를 구독하여 프린트되게 한다. 하지만 이 때까지는 아무 것도 출력되지 않는다.
 		* 5) `ryan`이라는 `Student` 인스턴스를 `.onNext` 이벤트를 통해 추가한다. 이렇게 하면 `ryan`의 `score`값이 출력된다.
 		* 6) `ryan`의 `score`값을 변경해보자. 이렇게 하면 `ryan`의 새 점수가 출력된다.
