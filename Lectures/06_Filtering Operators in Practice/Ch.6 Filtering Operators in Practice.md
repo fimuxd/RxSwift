@@ -296,7 +296,7 @@
 		<img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/06_Filtering%20Operators%20in%20Practice/11.%20fourth.png?raw=true" height = 50>
 
 * 두 가지 경우 모두 sequence 요소는 같다. 왜냐하면 같은 코드 경로를 따르기 때문이다. 따라서 다음 두개의 로직을 생각할 수 있다.
-	* sequence에서 방출하는 첫 번째 element는 무조건 무시할 수 있다.
+	* sequence에서 방출하는 첫 번째 element는 무조건 무시할 수 있다. 왜냐하면 라이브러리 접근 허용 상태가 결정되지 않았을 때도 무조건 false 가 반환 될 것이기 때문이다. 이후 2번째 부터 반환되는 true or false 값이 직접 사용자가 alert를 통해 접근 허용 또는 거절한 상태가 된다.
 	* sequence의 마지막 요소가 `false`인지 확인한다. 맞다면 에러 메시지를 표시한다.
 * 이 내용을 `viewDidLoad()`에 추가하자
 

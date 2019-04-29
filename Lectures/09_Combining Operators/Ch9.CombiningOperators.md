@@ -388,7 +388,7 @@
 * 상기 코드에서 주석 2 부분을 아래와 같이 변경해보자.
 
 	```swift
-	let observable = textField.sampple(button)
+	let observable = textField.sample(button)
 	```
 
 	* 이렇게 하면 `Paris`가 한번만 출력되는 것을 알 수 있다.
