@@ -26,7 +26,7 @@
   > | Ch# | Chapter Subject | Question | Note |
   > |:---:| :--- | :--- | :--- |
   > |1|[Hello RxSwift!](https://github.com/fimuxd/RxSwift/blob/master/Lectures/01_HelloRxSwift/Ch.1%20Hello%20RxSwift.md) | - | RxSwift 개요|
-  > |2|[Observables](https://github.com/fimuxd/RxSwift/blob/master/Lectures/02_Observables/Ch2.%20Observables.md) | - | **관찰가능한. RxSwift의 심장**<p> just, of, from, subscribe.empty, never, range, dispose, create, deferred, single, completable, maybe, do, debug |
+  > |2|[Observables](https://github.com/Salman544/RxSwift/blob/patch-1/Lectures/02_Observables/Ch2.%20Observables.md) | - | **관찰가능한. RxSwift의 심장**<p> just, of, from, subscribe.empty, never, range, dispose, create, deferred, single, completable, maybe, do, debug |
   > |3|[Subjects](https://github.com/fimuxd/RxSwift/blob/master/Lectures/03_Subjects/Ch3.%20Subjects.md) | [Relays & Variables](https://github.com/fimuxd/RxSwift/blob/master/Lectures/03_Subjects/Ch3.%20Homework.md) | **Observable이자 Observer 인 녀석**<p> PublishSubject, BehaviorSubject, RelaySubject, Variable|
   > |4|[Observables and Subjects in Practice](https://github.com/fimuxd/RxSwift/blob/master/Lectures/04_ObservablesAndSubjectsInPractice/Ch4.ObservablesAndSubjectsInPractice.md)| - | **실전 연습**<p>single, maybe, completable |
 
