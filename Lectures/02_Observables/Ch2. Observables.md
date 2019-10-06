@@ -470,7 +470,7 @@ public func example(of description: String, action: () -> Void) {
 		* 두 개의 `onNext`	요소인 `1`과 `?`가 모두 찍힐 것이다. 
         * 하지만 종료를 위한 이벤트도 방출하지 않고 `.disposed(by: disposeBag)` 도 하지 않기 때문에 결과적으로 메모리 낭비가 발생하게 될 것이다.
 	
-## G. observable fatory 만들기
+## G. observable factory 만들기
 * subscriber를 기다리는 (날 시동시켜줘!) Observable을 만드는 대신, 각 subscriber에게 새롭게 Observable 항목을 제공하는 Obaservable factory를 만드는 방법도 있다. 
 * 하기의 코드를 살펴보자
 	```swift
