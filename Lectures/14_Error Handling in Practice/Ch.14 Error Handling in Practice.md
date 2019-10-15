@@ -105,7 +105,7 @@
 * **ViewController.swift**를 열고 다음과 같이 간단한 dictionary 프로퍼티를 추가하자.
 
 	```swift
-	var cache = [String: We ather]()
+	var cache = [String: Weather]()
 	```
 	* 이녀석은 일시적으로 캐시 데이터를 가지고 있을 것이다.
 * `viewDidLoad()` 메소드로 가서 지난번에 만든 `textSearch` observable을 확인하자. `do(onNext:)`를 체인에 추가하는 것으로 `textSearch` observable을 변경하여 캐시를 채울 수 있다. 다음과 같이 코드를 작성하자.
