@@ -123,7 +123,7 @@
 	```
 	
 	* 이렇게 하면 제대로된 날씨 데이터들은 `cache` dictionary에 쌓일 것이다. 
-* 그렇다면 이렇게 캐시된 결과는 어떻게 재사용할 수 있을까? 에러이벤트에 캐시된 값들을 반환하려면 `.catchErrorJustRetur(ApiController.Weather.empty)`를 하기 코드로 바꿔준다. 
+* 그렇다면 이렇게 캐시된 결과는 어떻게 재사용할 수 있을까? 에러이벤트에 캐시된 값들을 반환하려면 `.catchErrorJustReturn(ApiController.Weather.empty)`를 하기 코드로 바꿔준다. 
 
 	```swift
 	.catchError { error in
