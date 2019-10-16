@@ -267,7 +267,7 @@
 	```swift
 	enum ApiError: Error {
 		case cityNotFound
-	   case serverFailure
+	   	case serverFailure
 	}
 	```
 * 이 에러 타입을 `buildRequest(...)` 내부에 사용하게 될 것이다. 이 메소드의 마지막 라인은 data의 observable을 반환하는 내용이다. 이 observable은 JSON 객체 structure에 매핑된다. 이 곳이 바로 커스텀 에러를 만들고 반환해야할 곳이다. 
