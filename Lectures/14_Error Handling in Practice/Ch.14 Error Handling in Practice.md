@@ -180,7 +180,6 @@
 				self.cache[text] = data
 			}
 		})
-			.catchErrorJustReturn(ApiController.Weather.empty)
 			.retry(3)
 			.catchError { error in
 				if let text = text, let cachedData = self.cache[text] {
