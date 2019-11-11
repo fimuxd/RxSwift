@@ -105,10 +105,10 @@
 * **ViewController.swift**를 열고 다음과 같이 간단한 dictionary 프로퍼티를 추가하자.
 
 	```swift
-	var cache = [String: We ather]()
+	var cache = [String: Weather]()
 	```
 	* 이녀석은 일시적으로 캐시 데이터를 가지고 있을 것이다.
-* `viewDiddLoad()` 메소드로 가서 지난번에 만든 `textSearch` observable을 확인하자. `do(onNext:)`를 체인에 추가하는 것으로 `textSearch` observable을 변경하여 캐시를 채울 수 있다. 다음과 같이 코드를 작성하자.
+* `viewDidLoad()` 메소드로 가서 지난번에 만든 `textSearch` observable을 확인하자. `do(onNext:)`를 체인에 추가하는 것으로 `textSearch` observable을 변경하여 캐시를 채울 수 있다. 다음과 같이 코드를 작성하자.
 
 	```swift
 	        let textSearch = searchInput.flatMap { text in
@@ -123,7 +123,7 @@
 	```
 	
 	* 이렇게 하면 제대로된 날씨 데이터들은 `cache` dictionary에 쌓일 것이다. 
-* 그렇다면 이렇게 캐시된 결과는 어떻게 재사용할 수 있을까? 에러이벤트에 캐시된 값들을 반환하려면 `.catchErrorJustRetur(ApiController.Weather.empty)`를 하기 코드로 바꿔준다. 
+* 그렇다면 이렇게 캐시된 결과는 어떻게 재사용할 수 있을까? 에러이벤트에 캐시된 값들을 반환하려면 `.catchErrorJustReturn(ApiController.Weather.empty)`를 하기 코드로 바꿔준다. 
 
 	```swift
 	.catchError { error in
@@ -180,7 +180,6 @@
 				self.cache[text] = data
 			}
 		})
-			.catchErrorJustReturn(ApiController.Weather.empty)
 			.retry(3)
 			.catchError { error in
 				if let text = text, let cachedData = self.cache[text] {
@@ -268,7 +267,7 @@
 	```swift
 	enum ApiError: Error {
 		case cityNotFound
-	   case serverFailure
+	   	case serverFailure
 	}
 	```
 * 이 에러 타입을 `buildRequest(...)` 내부에 사용하게 될 것이다. 이 메소드의 마지막 라인은 data의 observable을 반환하는 내용이다. 이 observable은 JSON 객체 structure에 매핑된다. 이 곳이 바로 커스텀 에러를 만들고 반환해야할 곳이다. 
