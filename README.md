@@ -1,5 +1,5 @@
 # RxSwift <img src = "https://github.com/ReactiveX/RxSwift/raw/master/assets/Rx_Logo_M.png" width = 60  align = right> 
-
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter)](https://github.com/fimuxd/RxSwift)
 >드디어 얘기만 듣던 `RxSwift` 스터디를 시작합니다.
 
 ## Contents
