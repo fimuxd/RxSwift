@@ -87,7 +87,7 @@
 
 ## ContactMe
 * 📱 +82 10.3316.1609
-* 📧 iosdeveloperkr@gmail.com
+* 📧 me@boyoung.dev
 
 ***
 ***Life is a game. Play it :)***
