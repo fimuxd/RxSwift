@@ -295,6 +295,7 @@
 
 	        PhotoWriter.save(image)
 	            .asSingle()
+		    .observeOn(MainScheduler.instance)
 	            .subscribe(onSuccess: { [weak self] id in
 	                self?.showMessage("Saved with id: \(id)")
 	                self?.actionClear()
