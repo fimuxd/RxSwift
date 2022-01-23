@@ -188,7 +188,7 @@ state(아마도 번역하자면 상태? 정도겠죠)는 정의하기 어려운 
 			return value != .landscape
 		}
 		.map { _ in
-			return "Portait is the best!"
+			return "Portrait is the best!"
 		}
 		.subscribe(onNext: { string in
 			showAlert(text: string)
