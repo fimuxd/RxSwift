@@ -120,7 +120,7 @@
 	}
 	```
 
-* 이로써 JSON rorcpfmf `Event` 객체 조합으로 변환했다. **Event.swift**를 열어보면 아래와 같은 내용들이 이미 구현되어있는 것을 알 수 있다.
+* 이로써 JSON 객체를 `Event` 객체 조합으로 변환했다. **Event.swift**를 열어보면 아래와 같은 내용들이 이미 구현되어있는 것을 알 수 있다.
 	* JSON 객체를 파라미터로 받는 `init`
 	* 이벤트를 JSON 객체로 내보내는 `dictionary`라는 이름의 	`dynamic property`
 * **ActivityController.swift**로 돌아가서 `fetchEvents(repo:):` 연산자 다음에 다음 내용을 추가하자.
