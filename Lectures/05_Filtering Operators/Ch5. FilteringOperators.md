@@ -190,8 +190,8 @@
 
 <img src = "https://github.com/fimuxd/RxSwift/blob/master/Lectures/05_Filtering%20Operators/6.skipUntil.png?raw=true" height = 200>
 
-* `skipUnitl`은 다른 observable이 시동할 때까지 현재 observable에서 방출하는 이벤트를 skip 한다.
-* `skipUnitl`은 다른 observable이 `.next`이벤트를 방출하기 전까지는 기존 observable에서 방출하는 이벤트들을 무시하는 것이다. 
+* `skipUntil`은 다른 observable이 시동할 때까지 현재 observable에서 방출하는 이벤트를 skip 한다.
+* `skipUntil`은 다른 observable이 `.next`이벤트를 방출하기 전까지는 기존 observable에서 방출하는 이벤트들을 무시하는 것이다. 
 * 다음과 같은 코드를 확인해보자
 
 	```swift
@@ -224,10 +224,10 @@
 	
 	* 주석을 따라 확인해보면, 
 		* 1) `subject`와 `trigger`라는 PublishSubject를 만든다. 
-		* 2) `subject`를 구독하는데 그 전에 `.skipUnitl`을 통해 `trigger`를 추가한다.
+		* 2) `subject`를 구독하는데 그 전에 `.skipUntil`을 통해 `trigger`를 추가한다.
 		* 3) `subject`에 `.onNext()`로 `A`, `B` 추가한다.
 		* 4) `trigger`에 `.onNext()`로 `X`를 추가한다.
-		* 5) `subject`에 새로운 이벤트`C`를 추가한다. 그제서야 `C`가 방출되는 것을 콘솔에서 확인할 수 있다. 왜냐하면 그 전까지는 `.skipUnitl`이 막고 있었기 때문이다 
+		* 5) `subject`에 새로운 이벤트`C`를 추가한다. 그제서야 `C`가 방출되는 것을 콘솔에서 확인할 수 있다. 왜냐하면 그 전까지는 `.skipUntil`이 막고 있었기 때문이다 
 
 ## D. Taking operators
 
