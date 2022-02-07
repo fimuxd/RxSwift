@@ -306,12 +306,12 @@
 	example(of: "zip") {
 
 	    // 1
-	    enum Weatehr {
+	    enum Weather {
 	        case cloudy
 	        case sunny
 	    }
 
-	    let left:Observable<Weatehr> = Observable.of(.sunny, .cloudy, .cloudy, .sunny)
+	    let left:Observable<Weather> = Observable.of(.sunny, .cloudy, .cloudy, .sunny)
 	    let right = Observable.of("Lisbon", "Copenhagen", "London", "Madrid", "Vienna")
 
 	    // 2
