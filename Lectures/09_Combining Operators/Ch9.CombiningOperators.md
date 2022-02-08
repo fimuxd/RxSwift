@@ -306,12 +306,12 @@
 	example(of: "zip") {
 
 	    // 1
-	    enum Weatehr {
+	    enum Weather {
 	        case cloudy
 	        case sunny
 	    }
 
-	    let left:Observable<Weatehr> = Observable.of(.sunny, .cloudy, .cloudy, .sunny)
+	    let left:Observable<Weather> = Observable.of(.sunny, .cloudy, .cloudy, .sunny)
 	    let right = Observable.of("Lisbon", "Copenhagen", "London", "Madrid", "Vienna")
 
 	    // 2
@@ -498,7 +498,7 @@
 
 ## G. sequence내의 요소들간 결합
 
-### 1. reduece(_:_:)
+### 1. reduce(_:_:)
 
 * Swift 표준 라이브러리의 `reduce(:_:_)`를 이미 알고 있을 것이다.
 
