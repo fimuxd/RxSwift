@@ -358,8 +358,8 @@
 	    let response = Observable.from(["https://api.github.com/search/repositories?q=language:swift&per_page=5"])
 	//            map to convert to to URLRequest
 	//            flatMap to fetch JSON back
-	//            flatMapt to convert JSON to list of repo names, and create Observable from that list
-	//            existing code floows below
+	//            flatMap to convert JSON to list of repo names, and create Observable from that list
+	//            existing code follows below
 	        .map { urlString -> URL in
 	            return URL(string: "https://api.github.com/repos/\(urlString)/events")!
 	        }
