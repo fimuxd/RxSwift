@@ -205,7 +205,7 @@ public func example(of description: String, action: () -> Void) {
 	*/
 	``` 
 	* 아주 자주 쓰이는 패턴이기 때문에 RxSwift에는 이 부분에 대한 축약형들이 있다.
-	* 즉, Observable이 방출하는 `.next`,`.error`,`.completed` 같은 각각의 이벤트들에 대해 `subscribe` 연산자가있다.
+	* 즉, Observable이 방출하는 `.next`,`.error`,`.completed` 같은 각각의 이벤트들에 대해 `subscribe` 연산자가 있다.
 * 상기의 코드를 다음과 같이 바꿔보면,
 
 	```swift
@@ -248,7 +248,7 @@ public func example(of description: String, action: () -> Void) {
 	```
 	* Observable은 반드시 특정 타입으로 정의되어야 한다. 
 	* 이 예제의 경우 타입추론할 것이 없기 때문에 (가지고 있는 요소가 없으므로) 타입을 명시적으로 정의해줘야 하며, 따라서 `Void` 는 아주 적절한 타입이 될 것이다. 
-	* 주석으로 표기한 각 번호를 따라가보면
+	* 주석으로 표기한 각 번호를 따라가 보면
 		* 1) `.next` 이벤트를 핸들링 한다.
 		* 2) `.completed` 이벤트는 어떤 요소를 가지지 않으므로 단순히 메시지만 프린트 한다. 
 	* 그렇다면 대체 `empty` Observable의 용도는 뭐가 있을까? 
