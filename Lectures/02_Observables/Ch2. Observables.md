@@ -333,7 +333,7 @@ public func example(of description: String, action: () -> Void) {
     * 현재 `observable` 안에는 3개의 요소만 있으므로 `dispose()` 를 호출하지 않아도 `Completed`가 프린트 되지만, 요소가 무한히 있다면 `dispose()` 를 호출해야 `Completed` 가 프린트 된다.
 
 ### 2. DisposeBag()
-* 각각의 구독에 대해서 일일히 관리하는 것은 효율적이지 못하기 때문에, RxSwift에서 제공하는 `DisposedBag` 타입을 이용할 수 있다. 
+* 각각의 구독에 대해서 일일히 관리하는 것은 효율적이지 못하기 때문에, RxSwift에서 제공하는 `DisposeBag` 타입을 이용할 수 있다. 
 * `DisposeBag`에는 (보통은 `.disposed(by:)` method를 통해 추가된) disposables를 가지고 있다.
 * disposable은 dispose bag이 할당 해제 하려고 할 때마다 dispose()를 호출한다.
 * 하기의 코드를 살펴보자
