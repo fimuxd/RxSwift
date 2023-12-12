@@ -291,7 +291,7 @@
 	```
 
  	* 이렇게 하면 새로운 구독자는 에러 이벤트만 받을 것이다. 왜냐하면 subject 자체가 구독 전에 이미 dispose 되었으므로.
- 	* 다만, `ReplaySubject`에 명시적으로 `dispose()`를 호출하는 것은 적절하지 않다. 왜냐하면 만약 subjuect의 구독을 disposeBag에 넣고, 이 subject의 소유자(보통은 ViewController나 ViewModel)가 할당 해재되면 모든 것들이 dispose 될 것이기 때문이다.
+ 	* 다만, `ReplaySubject`에 명시적으로 `dispose()`를 호출하는 것은 적절하지 않다. 왜냐하면 만약 subjuect의 구독을 disposeBag에 넣고, 이 subject의 소유자(보통은 ViewController나 ViewModel)가 할당 해제되면 모든 것들이 dispose 될 것이기 때문이다.
  	* 참고로 상기 에러메시지에 표시된 `ReplayMany`는 `ReplaySubject`를 생성할 때 사용되는 내부 유형이다.
 
 ### 2. 어떨 때 쓸 수 있을까?
@@ -304,7 +304,7 @@
 * 앞서 얘기한 것처럼 `Variable`은 `BehaviorSubject`를 래핑하고, 이들의 현재값을 *상태State* 로 보유한다. 따라서 현재값은 `value` 프로퍼티를 통해서 알 수 있다.
 * `value` 프로퍼티를 `Variable`의 새로운 요소로 가지기 위해선 일반적인 subject나 observable과는 다른 방법으로 추가해야한다. 즉 `onNext(_:)`를 쓸 수 없다.
 * 다른 `Subject`와 대조되는 `Variable`의 또 다른 특성은, 에러가 발생하지 않을 것임을 **보증**한다는 것이다. 따라서 `.error` 이벤트를 variable에 추가할 수 없다.
-* 또한, variable은 할당 해재되었을 때 자동적으로 완료되기 때문에 수동적으로 `.completed`를 할 필요도/할 수도 없다.
+* 또한, variable은 할당 해제되었을 때 자동적으로 완료되기 때문에 수동적으로 `.completed`를 할 필요도/할 수도 없다.
 * 아래의 코드를 확인해보자
 
 	```swift
@@ -377,7 +377,7 @@
 ### 1. PublishSubject를 이용하여 블랙잭 카드딜러 만들기
 
 * `SupportCode.swift`내의 `cardString(for:)`, `point(for:)` 메소드와 `HandError` enum, 제공된 array등을 이용하여 문제를 풀어보자
-* `// Add code to update dealtHand here` 주석부분에 `point(for:)`에 `hand` array를 넣어 결과 값을 얻는다. 만약 결과가 `21`보다 크면 `HandError.busted`를 `dealtHand`에 추가한다. 그렇지 않으면 `hand`를 `dealtHand`에 .next` 이벤트로 추가한다.
+* `// Add code to update dealtHand here` 주석부분에 `point(for:)`에 `hand` array를 넣어 결과 값을 얻는다. 만약 결과가 `21`보다 크면 `HandError.busted`를 `dealtHand`에 추가한다. 그렇지 않으면 `hand`를 `dealtHand`에 `.next` 이벤트로 추가한다.
 *  `// Add subscription to dealtHand here` 주석부분에 `dealtHand`와 `.next`, `.error` 이벤트 구독을 구현한다. `.next`이벤트에는 `cardString(for:)`와 `points(for:)`를 호출하여 얻은 `String` 결과를 포함하게 하고, `.error`에는 에러가 프린트 되도록 한다.
 * `deal(_:)`에 3을 넣어 호출하므로 playground를 돌릴 때 마다 3개의 카드가 나올 것이다.
 

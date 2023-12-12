@@ -205,7 +205,7 @@ public func example(of description: String, action: () -> Void) {
 	*/
 	``` 
 	* 아주 자주 쓰이는 패턴이기 때문에 RxSwift에는 이 부분에 대한 축약형들이 있다.
-	* 즉, Observable이 방출하는 `.next`,`.error`,`.completed` 같은 각각의 이벤트들에 대해 `subscribe` 연산자가있다.
+	* 즉, Observable이 방출하는 `.next`,`.error`,`.completed` 같은 각각의 이벤트들에 대해 `subscribe` 연산자가 있다.
 * 상기의 코드를 다음과 같이 바꿔보면,
 
 	```swift
@@ -248,7 +248,7 @@ public func example(of description: String, action: () -> Void) {
 	```
 	* Observable은 반드시 특정 타입으로 정의되어야 한다. 
 	* 이 예제의 경우 타입추론할 것이 없기 때문에 (가지고 있는 요소가 없으므로) 타입을 명시적으로 정의해줘야 하며, 따라서 `Void` 는 아주 적절한 타입이 될 것이다. 
-	* 주석으로 표기한 각 번호를 따라가보면
+	* 주석으로 표기한 각 번호를 따라가 보면
 		* 1) `.next` 이벤트를 핸들링 한다.
 		* 2) `.completed` 이벤트는 어떤 요소를 가지지 않으므로 단순히 메시지만 프린트 한다. 
 	* 그렇다면 대체 `empty` Observable의 용도는 뭐가 있을까? 
@@ -333,7 +333,7 @@ public func example(of description: String, action: () -> Void) {
     * 현재 `observable` 안에는 3개의 요소만 있으므로 `dispose()` 를 호출하지 않아도 `Completed`가 프린트 되지만, 요소가 무한히 있다면 `dispose()` 를 호출해야 `Completed` 가 프린트 된다.
 
 ### 2. DisposeBag()
-* 각각의 구독에 대해서 일일히 관리하는 것은 효율적이지 못하기 때문에, RxSwift에서 제공하는 `DisposedBag` 타입을 이용할 수 있다. 
+* 각각의 구독에 대해서 일일히 관리하는 것은 효율적이지 못하기 때문에, RxSwift에서 제공하는 `DisposeBag` 타입을 이용할 수 있다. 
 * `DisposeBag`에는 (보통은 `.disposed(by:)` method를 통해 추가된) disposables를 가지고 있다.
 * disposable은 dispose bag이 할당 해제 하려고 할 때마다 dispose()를 호출한다.
 * 하기의 코드를 살펴보자
